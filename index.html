@@ -1,0 +1,792 @@
+<!doctype html>
+<html class="no-js page" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handlebars starter kit</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap&subset=cyrillic" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <script>
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+        function cth(c){document.documentElement.classList.add(c)}
+        'ontouchstart' in window?cth('touch'):cth('no-touch');
+        if(typeof InstallTrigger!=='undefined')cth('firefox');
+        if(/constructor/i.test(window.HTMLElement)||(function(p){return p.toString()==="[object SafariRemoteNotification]"})(!window['safari']||(typeof safari!=='undefined'&&safari.pushNotification)))cth('safari');
+        if(/*@cc_on!@*/false||!!document.documentMode)cth('ie');
+        if(!(/*@cc_on!@*/false||!!document.documentMode)&&!!window.StyleMedia)cth('edge');
+        if(!!window.chrome&&(!!window.chrome.webstore||!!window.chrome.runtime))cth('chrome');
+        if(~navigator.appVersion.indexOf("Win"))cth('windows');
+        if(~navigator.appVersion.indexOf("Mac"))cth('osx');
+        if(~navigator.appVersion.indexOf("Linux"))cth('linux');
+    </script>
+  </head>
+<body>
+  <div id="page" class="page__inner">
+    <header class="page-header">
+      <div class="page-header__inner">
+        <a href="#" class="page-header__logo">
+          <svg>
+            <use xlink:href="assets/img/symbol/sprite.svg#logo"></use>
+          </svg>
+        </a>
+        <div class="page-header__top">
+          <article class="area-selector">
+            <input type="checkbox" id="areaInputToggle" class="area-selector__input">
+            <label for="areaInputToggle" class="area-selector__toggle">
+              <svg width="15" height="15">
+                <use xlink:href="assets/img/symbol/sprite.svg#area"></use>
+              </svg>
+              <span>Приморский край</span>
+            </label>
+            <div class="area-selector__dropdown">
+              <div class="area-selector__column">
+                <h2 class="area-selector__title">Приморский край</h2>
+                <ul class="area-selector__list">
+                  <li class="area-selector__item">
+                    <a href="#" class="area-selector__link">Владивосток</a>
+                    <a href="#" class="area-selector__link area-selector__link--more">2 териманала</a>
+                  </li>
+                  <li class="area-selector__item">
+                    <a href="#" class="area-selector__link">Артем</a>
+                  </li>
+                  <li class="area-selector__item">
+                    <a href="#" class="area-selector__link">Уссурийск</a>
+                  </li>
+                  <li class="area-selector__item">
+                    <a href="#" class="area-selector__link">Находка</a>
+                  </li>
+                  <li class="area-selector__item">
+                    <a href="#" class="area-selector__link">Дальнегорск</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="area-selector__column">
+                <h2 class="area-selector__title">Республика Татарстан</h2>
+                <ul class="area-selector__list">
+                  <li class="area-selector__item">
+                    <a href="#" class="area-selector__link">Казань</a>
+                    <a href="#" class="area-selector__link area-selector__link--more">3 териманала</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <div class="page-header__contact">
+            <svg width="15" height="15">
+              <use xlink:href="assets/img/symbol/sprite.svg#tel"></use>
+            </svg>
+            <span>8 800 222 22 68</span>
+          </div>
+          <!--<div class="header-user">-->
+          <!--  <i class="header-user__icon">-->
+          <!--    <svg width="40" height="40">-->
+          <!--      <use xlink:href="assets/img/symbol/sprite.svg#user"></use>-->
+          <!--    </svg>-->
+          <!--  </i>-->
+          <!--  <input type="checkbox" name="user-login" id="user-login" class="header-user__input">-->
+          <!--  <label for="user-login" class="header-user__label">Личный кабинет</label>-->
+          <!--  <ul class="header-user__dropdown">-->
+          <!--    <li class="header-user__item">-->
+          <!--      <a href="#" class="header-user__link">Вход</a>-->
+          <!--    </li>-->
+          <!--    <li class="header-user__item">-->
+          <!--      <a href="#" class="header-user__link">Регистрация</a>-->
+          <!--    </li>-->
+          <!--  </ul>-->
+          <!--</div>-->
+          
+          <div class="header-user header-user--logged-in">
+            <i class="header-user__icon">
+              <svg width="27" height="27">
+                <use xlink:href="assets/img/symbol/sprite.svg#user-logged-in"></use>
+              </svg>
+            </i>
+            <input type="checkbox" name="user-login" id="user-logged-in" class="header-user__input">
+            <label for="user-logged-in" class="header-user__label">Пользователь</label>
+            <ul class="header-user__dropdown">
+              <li class="header-user__item">
+                <a href="#" class="header-user__link">Заказать доставку</a>
+              </li>
+              <li class="header-user__item">
+                <a href="#" class="header-user__link">Персональные данные</a>
+              </li>
+              <li class="header-user__item">
+                <a href="#" class="header-user__link">Выйти</a>
+              </li>
+            </ul>
+          </div>
+         <div class="page-header__open">
+           <button id="mobileNavOpen" type="button">
+             <span></span>
+           </button>
+         </div>
+        </div>
+        <nav class="page-header__nav">
+          <ul class="main-nav">
+            <li class="main-nav__item">
+              <a href="#" class="main-nav__link">
+                Отследить посылку
+              </a>
+            </li>
+            <li class="main-nav__item">
+              <a href="#" class="main-nav__link">
+                Расчет тарифа по Приморью
+              </a>
+            </li>
+            <li class="main-nav__item">
+              <label href="#" class="main-nav__link" for="nav-services">
+                <span>Услуги</span>
+              </label>
+              <input type="radio" name="nav-items" id="nav-services" class="main-nav__input">
+              <ul class="main-nav__dropdown">
+                <li class="main-nav__item main-nav__item--dropdown">
+                  <a href="#" class="main-nav__link">Грузоперевозки по Приморскому краю</a>
+                </li>
+                <li class="main-nav__item  main-nav__item--dropdown">
+                  <a href="#" class="main-nav__link">Грузоперевозки по России</a>
+                </li>
+                <li class="main-nav__item  main-nav__item--dropdown">
+                  <a href="#" class="main-nav__link">Забор и доставка курьером</a>
+                </li>
+                <li class="main-nav__item  main-nav__item--dropdown">
+                  <a href="#" class="main-nav__link">Доставка посылок из интернет-магазинов</a>
+                </li>
+                <li class="main-nav__item  main-nav__item--dropdown">
+                  <a href="#" class="main-nav__link">Реализация нестандартных логистических задач</a>
+                </li>
+                <li class="main-nav__item  main-nav__item--dropdown">
+                  <a href="#" class="main-nav__link">Страхование груза</a>
+                </li>
+              </ul>
+            </li>
+            <li class="main-nav__item">
+              <label href="#" class="main-nav__link" for="nav-info">
+                <span>Информация</span>
+              </label>
+              <input type="radio" name="nav-items" id="nav-info" class="main-nav__input">
+              <ul class="main-nav__dropdown">
+                <li class="main-nav__item main-nav__item--dropdown">
+                  <a href="#" class="main-nav__link">Как отправить посылку</a>
+                </li>
+                <li class="main-nav__item  main-nav__item--dropdown">
+                  <a href="#" class="main-nav__link">Как получить посылку</a>
+                </li>
+                <li class="main-nav__item  main-nav__item--dropdown">
+                  <a href="#" class="main-nav__link">Правила приемки и отправки грузов</a>
+                </li>
+                <li class="main-nav__item  main-nav__item--dropdown">
+                  <a href="#" class="main-nav__link">Тарифы на перевозку</a>
+                </li>
+                <li class="main-nav__item  main-nav__item--dropdown">
+                  <a href="#" class="main-nav__link">Упаковки грузов и виды упаковки</a>
+                </li>
+                <li class="main-nav__item  main-nav__item--dropdown">
+                  <a href="#" class="main-nav__link">Хранение груза на складах Bus-курьер</a>
+                </li>
+                <li class="main-nav__item  main-nav__item--dropdown">
+                  <a href="#" class="main-nav__link">Доставка грузов и багажа из Аэропорта</a>
+                </li>
+              </ul>
+            </li>
+            <li class="main-nav__item">
+              <a href="#" class="main-nav__link">
+                Документы
+              </a>
+            </li>
+            <li class="main-nav__item">
+              <a href="#" class="main-nav__link">
+                Контакты
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="mobile-nav">
+          <div class="mobile-nav__header">
+            <a href="#" class="mobile-nav__logo">
+              <svg width="68" height="40">
+                <use xlink:href="assets/img/symbol/sprite.svg#logo"></use>
+              </svg>
+            </a>
+            <a href="#" class="mobile-nav__contact">
+              <svg width="15" height="15">
+                <use xlink:href="assets/img/symbol/sprite.svg#tel"></use>
+              </svg>
+            </a>
+            <button id="mobileNavClose" class="mobile-nav__close"></button>
+          </div>
+          <div class="mobile-nav__scroll">
+            <ul class="mobile-nav__list">
+              <li class="mobile-nav__item">
+                <a href="#" class="mobile-nav__link">Отследить посылку</a>
+              </li>
+              <li class="mobile-nav__item">
+                <a href="#" class="mobile-nav__link">Рассчет тарифа по Приморью</a>
+              </li>
+              <li class="mobile-nav__item">
+                <input type="checkbox" name="mobile-services" id="mobile-services" class="mobile-nav__input">
+                <label for="mobile-services" class="mobile-nav__link mobile-nav__link--toggle">Услуги</label>
+                <ul class="mobile-nav__list mobile-nav__list--inner">
+                  <li class="mobile-nav__item">
+                    <a href="#" class="mobile-nav__link">Грузоперевозки по Приморскому краю</a>
+                  </li>
+                  <li class="mobile-nav__item">
+                    <a href="#" class="mobile-nav__link">Грузоперевозки в республике Татарстан</a>
+                  </li>
+                  <li class="mobile-nav__item">
+                    <a href="#" class="mobile-nav__link">Грузоперевозки по России</a>
+                  </li>
+                  <li class="mobile-nav__item">
+                    <a href="#" class="mobile-nav__link">Забор и доставка курьером</a>
+                  </li>
+                  <li class="mobile-nav__item">
+                    <a href="#" class="mobile-nav__link">Доставка посылок из интернет-магазинов</a>
+                  </li>
+                  <li class="mobile-nav__item">
+                    <a href="#" class="mobile-nav__link">Решение нестандартных логистических задач</a>
+                  </li>
+                  <li class="mobile-nav__item">
+                    <a href="#" class="mobile-nav__link">Страхование груза</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="mobile-nav__item">
+                <input type="checkbox" name="mobile-info" id="mobile-info" class="mobile-nav__input">
+                <label for="mobile-info" class="mobile-nav__link mobile-nav__link--toggle">Информация</label>
+                <ul class="mobile-nav__list mobile-nav__list--inner">
+                  <li class="mobile-nav__item">
+                    <a href="#" class="mobile-nav__link">Как отправить посылку</a>
+                  </li>
+                  <li class="mobile-nav__item">
+                    <a href="#" class="mobile-nav__link">Как получить посылку</a>
+                  </li>
+                  <li class="mobile-nav__item">
+                    <a href="#" class="mobile-nav__link">Правила приемки и отправки грузов</a>
+                  </li>
+                  <li class="mobile-nav__item">
+                    <a href="#" class="mobile-nav__link">Тарифы на перевозку</a>
+                  </li>
+                  <li class="mobile-nav__item">
+                    <a href="#" class="mobile-nav__link">Упаковки грузов и виды упаковки</a>
+                  </li>
+                  <li class="mobile-nav__item">
+                    <a href="#" class="mobile-nav__link">Хранение груза на складах Bus-курьер</a>
+                  </li>
+                  <li class="mobile-nav__item">
+                    <a href="#" class="mobile-nav__link">Доставка грузов и багажа из Аэропорта</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="mobile-nav__item">
+                <a href="#" class="mobile-nav__link">Документы</a>
+              </li>
+              <li class="mobile-nav__item">
+                <a href="#" class="mobile-nav__link">Контакты</a>
+              </li>
+            </ul>
+            <div class="mobile-nav__footer">
+              <a href="#" class="mobile-nav__footer-link mobile-nav__footer-link--lg"><b>inbox@busbox.guru</b></a>
+              <a href="#" class="mobile-nav__footer-link">Политика конфиденциальности</a>
+              <div class="mobile-nav__text">2013-2020 © ООО «Приморье»</div>
+              <div class="mobile-nav__text">Идея и дизайн сайта: <a href="#" class="link">Lead Wave</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    
+    <section class="main-promo">
+      <div class="main-promo__inner">
+        <div class="main-promo__info">
+          <h1 class="main-promo__title">Срочная доставка<br /> по Приморскому краю</h1>
+          <p class="main-promo__text"><span>от 2 до 24 часов</span> рейсовыми автобусами</p>
+          <img class="main-promo__img"
+               src="assets/img/content/index/bus-sm.png"
+               srcset="assets/img/content/index/bus-sm@2x.png 2x, assets/img/content/index/bus-sm@3x.png 3x">
+          <ul class="main-promo__list">
+            <li>
+              <svg width="26" height="28">
+                <use xlink:href="assets/img/symbol/sprite.svg#parcel"></use>
+              </svg>
+              <span>Посылки</span>
+            </li>
+            <li>
+              <svg width="28" height="28">
+                <use xlink:href="assets/img/symbol/sprite.svg#docs"></use>
+              </svg>
+              <span>Документы</span>
+            </li>
+            <li>
+              <svg width="25" height="28">
+                <use xlink:href="assets/img/symbol/sprite.svg#cargo"></use>
+              </svg>
+              <span>Грузы</span>
+            </li>
+          </ul>
+        </div>
+        <div class="main-promo__form">
+          <form action="#" class="form form--promo">
+            <h2 class="form__title">Рассчитайте стоимость</h2>
+            <div class="form__field">
+              <label for="delivery-from" class="form__label">Откуда отправляем?</label>
+              <div class="select">
+                <select  name="delivery-from" id="delivery-from" class="select__field">
+                  <option value="">Выберите город</option>
+                  <option value="">Находка</option>
+                  <option value="">Арсеньев</option>
+                </select>
+              </div>
+            </div>
+            <div class="form__field">
+              <label for="delivery-to" class="form__label">Куда отправляем?</label>
+              <div class="select">
+                <select id="delivery-to" name="delivery-from"  class="select__field">
+                  <option value="">Выберите город</option>
+                  <option value="">Находка</option>
+                  <option value="">Арсеньев</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="form__submit">Рассчитать</button>
+          </form>
+        </div>
+      </div>
+    </section>
+    <section class="page-section">
+      <div class="page-section__container">
+        <h2 class="page-section__title">Охватываем всю территорию<br> Приморского края</h2>
+        <p class="page-section__text">И даже самые труднодоступные населенные пункты региона</p>
+        <ul class="coverage-list">
+          <li class="coverage-list__item" data-count="9">
+            <p>Пунктов отправления   в ключевых городах региона</p>
+            <div class="coverage-list__link">
+              <a href="#" class="link link--gray">
+                <svg width="22" height="21">
+                  <use xlink:href="assets/img/symbol/sprite.svg#info"></use>
+                </svg>
+                <span class="link__text">Список пунктов отправления</span>
+              </a>
+            </div>
+          </li>
+          <li class="coverage-list__item" data-count="50">
+            <p>Населенных пунктов для получения ваших посылок в Приморье</p>
+            <div class="coverage-list__link">
+              <a href="#" class="link link--gray">
+                <svg width="22" height="21">
+                  <use xlink:href="assets/img/symbol/sprite.svg#info"></use>
+                </svg>
+                <span class="link__text">Список пунктов получения</span>
+              </a>
+            </div>
+          </li>
+          <li class="coverage-list__item" data-count="58">
+            <p>Рейсовых автобуса ежедневно отправляет ваши посылки</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section class="page-section">
+      <div class="page-section__container">
+        <h2 class="page-section__title">Предлагаем удобный сервис для вашего комфорта</h2>
+        <ul class="services-list">
+          <li class="services-list__item">
+            <div class="services-list__icon">
+              <svg width="50" height="50">
+                <use xlink:href="assets/img/symbol/sprite.svg#delivery-to-door"></use>
+              </svg>
+            </div>
+            <h3 class="services-list__title">Доставка от двери<br />до двери</h3>
+            <p class="services-list__text">Курьер заберет вашу посылку и доставит её до двери получателя.</p>
+          </li>
+          <li class="services-list__item">
+            <div class="services-list__icon">
+              <svg width="52" height="51">
+                <use xlink:href="assets/img/symbol/sprite.svg#sms-call"></use>
+              </svg>
+            </div>
+            <h3 class="services-list__title">SMS-уведомления<br />о статусе доставки</h3>
+            <p class="services-list__text">Вы знаете о всех этапах движения посылки. SMS-уведомления получают отправитель и получатель.</p>
+          </li>
+          <li class="services-list__item">
+            <div class="services-list__icon">
+              <svg width="50" height="50">
+                <use xlink:href="assets/img/symbol/sprite.svg#package"></use>
+              </svg>
+            </div>
+            <h3 class="services-list__title">Упаковка грузов</h3>
+            <p class="services-list__text">Подберем оптимальную упаковку для вашего груза и бережно запакуем его.</p>
+            <div class="services-list__toggle">
+              <a href="#" class="link link--gray">
+                <svg width="22" height="21">
+                  <use xlink:href="assets/img/symbol/sprite.svg#info"></use>
+                </svg>
+                <span class="link__text">Виды упаковки и стоимость</span>
+              </a>
+            </div>
+          </li>
+          <li class="services-list__item">
+            <div class="services-list__icon">
+              <svg width="55" height="55">
+                <use xlink:href="assets/img/symbol/sprite.svg#stock"></use>
+              </svg>
+            </div>
+            <h3 class="services-list__title">Складское<br>хранение грузов</h3>
+            <p class="services-list__text">Бесплатное хранение вашего груза в течение суток.</p>
+          </li>
+          <li class="services-list__item">
+            <div class="services-list__icon">
+              <svg width="70" height="42">
+                <use xlink:href="assets/img/symbol/sprite.svg#delivery-from-airport"></use>
+              </svg>
+            </div>
+            <h3 class="services-list__title">Доставка<br />из аэропорта</h3>
+            <p class="services-list__text">Забор груза из Аэропорта и Карго-Владивосток, прохождение необходимых процедур.</p>
+          </li>
+          <li class="services-list__item">
+            <div class="services-list__icon">
+              <svg width="51" height="51">
+                <use xlink:href="assets/img/symbol/sprite.svg#ensurance"></use>
+              </svg>
+            </div>
+            <h3 class="services-list__title">Страхование груза</h3>
+            <p class="services-list__text">Страховая защита груза и максимально быстрое возмещение ущерба.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section class="page-section">
+      <div class="page-section__container">
+        <h2 class="page-section__title">Решаем нестандартные логистические задачи</h2>
+        <p class="page-section__text">Нужно организовать доставку нестандартного груза в очень сжатые сроки? Трудно найти исполнителя? Мы предложим индивидуальное решение вашей задачи!</p>
+        <div class="page-section__row">
+          <form action="#" class="form form--send-cargo">
+            <div class="form__field">
+              <label for="delivery-from-second" class="form__label">Откуда отправляем?</label>
+              <div class="select">
+                <select name="delivery-from" id="delivery-from-second" class="select__field">
+                  <option value="">Выберите город</option>
+                  <option value="">Находка</option>
+                  <option value="">Арсеньев</option>
+                </select>
+              </div>
+            </div>
+            <div class="form__field">
+              <label for="delivery-to-second" class="form__label">Куда отправляем?</label>
+              <div class="select">
+                <select id="delivery-to-second" name="delivery-from"  class="select__field">
+                  <option value="">Выберите город</option>
+                  <option value="">Находка</option>
+                  <option value="">Арсеньев</option>
+                </select>
+              </div>
+            </div>
+            <div class="form__field form__field--full">
+              <label for="describe-task" class="form__label">Куда отправляем?</label>
+              <textarea name="describe-task" id="describe-task"  rows="5" class="text-area"></textarea>
+            </div>
+            <div class="form__field form__field--full">
+              <label class="checkbox">
+                <input type="checkbox" class="checkbox__input">
+                <span class="checkbox__label">Нажимая кнопку «Отправить», я даю свое согласие на</span>
+              </label>
+              <a href="#" class="link link--sm"><span class="link__text">обработку моих персональных данных</span></a>
+            </div>
+            <button type="submit" class="form__submit">Отправить</button>
+          </form>
+          <section class="page-section page-section--examples">
+            <h2 class="page-section__title">Примеры</h2>
+            <div class="swiper">
+              <div id="example-slider" class="swiper-container">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <article class="example">
+                      <img class="example__img"
+                           src="assets/img/content/index/example-slide.png"
+                           srcset="assets/img/content/index/example-slide@2x.png 2x, assets/img/content/index/example-slide@3x.png 3x">
+                      <div class="example__content">
+                        <h1 class="example__title">«Поставка цветов из Эквадора в 70 магазинов Приморья за 3 дня»</h1>
+                        <a href="#" class="link link--gray">
+                          <svg width="22" height="21">
+                            <use xlink:href="assets/img/symbol/sprite.svg#info"></use>
+                          </svg>
+                          <span class="link__text">Как мы решили эту задачу</span>
+                        </a>
+                      </div>
+                    </article>
+                  </div>
+                  <div class="swiper-slide">
+                    <article class="example">
+                      <img class="example__img"
+                           src="assets/img/content/index/example-slide.png"
+                           srcset="assets/img/content/index/example-slide@2x.png 2x, assets/img/content/index/example-slide@3x.png 3x">
+                      <div class="example__content">
+                        <h1 class="example__title">«Поставка цветов из Эквадора в 70 магазинов Приморья за 3 дня»</h1>
+                        <a href="#" class="link link--gray">
+                          <svg width="22" height="21">
+                            <use xlink:href="assets/img/symbol/sprite.svg#info"></use>
+                          </svg>
+                          <span class="link__text">Как мы решили эту задачу</span>
+                        </a>
+                      </div>
+                    </article>
+                  </div>
+                  <div class="swiper-slide">
+                    <article class="example">
+                      <img class="example__img"
+                           src="assets/img/content/index/example-slide.png"
+                           srcset="assets/img/content/index/example-slide@2x.png 2x, assets/img/content/index/example-slide@3x.png 3x">
+                      <div class="example__content">
+                        <h1 class="example__title">«Поставка цветов из Эквадора в 70 магазинов Приморья за 3 дня»</h1>
+                        <a href="#" class="link link--gray">
+                          <svg width="22" height="21">
+                            <use xlink:href="assets/img/symbol/sprite.svg#info"></use>
+                          </svg>
+                          <span class="link__text">Как мы решили эту задачу</span>
+                        </a>
+                      </div>
+                    </article>
+                  </div>
+                  <div class="swiper-slide">
+                    <article class="example">
+                      <img class="example__img"
+                           src="assets/img/content/index/example-slide.png"
+                           srcset="assets/img/content/index/example-slide@2x.png 2x, assets/img/content/index/example-slide@3x.png 3x">
+                      <div class="example__content">
+                        <h1 class="example__title">«Поставка цветов из Эквадора в 70 магазинов Приморья за 3 дня»</h1>
+                        <a href="#" class="link link--gray">
+                          <svg width="22" height="21">
+                            <use xlink:href="assets/img/symbol/sprite.svg#info"></use>
+                          </svg>
+                          <span class="link__text">Как мы решили эту задачу</span>
+                        </a>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+                <div class="swiper-pagination"></div>
+              </div>
+            
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+    <section class="page-section">
+      <div class="page-section__container">
+        <h2 class="page-section__title">Помогаем бизнесу</h2>
+        <p class="page-section__text">С нами работает более 500 компаний, которые регулярно отправляют грузы  по Приморскому краю и в Хабаровск.</p>
+        <div class="partners">
+          <div class="partners__item">
+            <svg width="110" height="27">
+              <use xlink:href="assets/img/symbol/sprite.svg#sber"></use>
+            </svg>
+          </div>
+          <div class="partners__item">
+            <svg width="118" height="25">
+              <use xlink:href="assets/img/symbol/sprite.svg#aeroflot"></use>
+            </svg>
+          </div>
+          <div class="partners__item">
+            <svg width="120" height="18">
+              <use xlink:href="assets/img/symbol/sprite.svg#giperauto"></use>
+            </svg>
+          </div>
+          <div class="partners__item">
+            <svg width="112" height="21">
+              <use xlink:href="assets/img/symbol/sprite.svg#unilab"></use>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="page-section">
+      <div class="page-section__container">
+        <h2 class="page-section__title">Грузоперевозки по Приморскому краю</h2>
+       <div class="page-section__row">
+         <div>
+           <p class="page-section__text page-section__text--shadow">Мы предлагаем приемлемые тарифы, высокую скорость доставки и ручаемся за каждый наш груз. Мы не работаем по принципу "наборных грузов", а доставляем вашу посылку в ближайшее время с момента оформления заказа...</p>
+           <button type="button" class="page-section__more">Читать подробнее</button>
+         </div>
+         <div class="page-section__images">
+           <img class="page-section__img"
+                src="assets/img/content/index/article-photo-1.jpg"
+                srcset="assets/img/content/index/article-photo-1@2x.jpg 2x, assets/img/content/index/article-photo-1@3x.jpg 3x">
+           <img class="page-section__img"
+                src="assets/img/content/index/article-photo-2.jpg"
+                srcset="assets/img/content/index/article-photo-2@2x.jpg 2x, assets/img/content/index/article-photo-2@3x.jpg 3x">
+           <img class="page-section__img"
+                src="assets/img/content/index/article-photo-3.jpg"
+                srcset="assets/img/content/index/article-photo-3@2x.jpg 2x, assets/img/content/index/article-photo-3@3x.jpg 3x">
+         </div>
+       </div>
+      </div>
+    </section>
+    
+    <footer class="page-footer">
+      <div class="page-footer__container">
+        <div class="page-footer__top">
+          <a href="#" class="page-footer__logo page-footer__logo--desktop">
+            <svg>
+              <use xlink:href="assets/img/symbol/sprite.svg#footer-logo"></use>
+            </svg>
+          </a>
+          <ul class="page-footer__nav">
+            <li>
+              <a href="#" class="page-footer__link">Отследить посылку</a>
+            </li>
+            <li>
+              <a href="#" class="page-footer__link">Рассчет тарифа по Приморью</a>
+            </li>
+            <li>
+              <a href="#" class="page-footer__link">Услуги</a>
+            </li>
+            <li>
+              <a href="#" class="page-footer__link">Информация</a>
+            </li>
+            <li>
+              <a href="#" class="page-footer__link">Документы</a>
+            </li>
+            <li>
+              <a href="#" class="page-footer__link">Контакты</a>
+            </li>
+          </ul>
+        </div>
+        <div class="page-footer__main">
+          <div class="page-footer__item page-footer__item--desktop page-footer__item--services">
+            <b class="page-footer__header">
+              <a href="#" class="page-footer__link">Услуги</a>
+            </b>
+            <ul class="page-footer__list">
+              <li>
+                <a href="" class="page-footer__link">Грузоперевозки по Приморскому краю</a>
+              </li>
+              <li>
+                <a href="" class="page-footer__link">Грузоперевозки в республике Татарстан</a>
+              </li>
+              <li>
+                <a href="" class="page-footer__link">Грузоперевозки по России</a>
+              </li>
+              <li>
+                <a href="" class="page-footer__link">Забор и доставка курьером</a>
+              </li>
+              <li>
+                <a href="" class="page-footer__link">Доставка посылок из интернет-магазинов</a>
+              </li>
+              <li>
+                <a href="" class="page-footer__link">Решение нестандартных логистических задач</a>
+              </li>
+              <li>
+                <a href="" class="page-footer__link">Страхование груза</a>
+              </li>
+            </ul>
+          </div>
+          <div class="page-footer__item page-footer__item--desktop">
+            <b class="page-footer__header">
+              <a href="#" class="page-footer__link">Информация</a>
+            </b>
+            <ul class="page-footer__list">
+              <li>
+                <a href="" class="page-footer__link page-footer__link--sm">Как отправить посылку</a>
+              </li>
+              <li>
+                <a href="" class="page-footer__link page-footer__link--sm">Как получить посылку</a>
+              </li>
+              <li>
+                <a href="" class="page-footer__link page-footer__link--sm">Правила приемки и отправки грузов</a>
+              </li>
+              <li>
+                <a href="" class="page-footer__link page-footer__link--sm">Тарифы на перевозку</a>
+              </li>
+              <li>
+                <a href="" class="page-footer__link page-footer__link--sm">Упаковки грузов и виды упаковки</a>
+              </li>
+              <li>
+                <a href="" class="page-footer__link page-footer__link--sm">Доставка грузов и багажа из Аэропорта</a>
+              </li>
+              <li>
+                <a href="" class="page-footer__link page-footer__link--sm">Франшиза Bus-Курьер</a>
+              </li>
+            </ul>
+          </div>
+          <div class="page-footer__item page-footer__item--desktop">
+            <b class="page-footer__header">
+              <a href="#" class="page-footer__link">Сервисы</a>
+            </b>
+            <ul class="page-footer__list">
+              <li>
+                <a href="" class="page-footer__link page-footer__link--sm">Поиск заказа</a>
+              </li>
+              <li>
+                <a href="" class="page-footer__link page-footer__link--sm">Личный кабинет</a>
+              </li>
+              <li>
+                <a href="" class="page-footer__link page-footer__link--sm">Онлайн-заявка</a>
+              </li>
+              <li>
+                <a href="" class="page-footer__link page-footer__link--sm">Расчет тарифа по Приморью</a>
+              </li>
+              <li>
+                <a href="" class="page-footer__link page-footer__link--sm">Расчет тарифа по Республике Татарстан</a>
+              </li>
+              <li>
+                <a href="" class="page-footer__link page-footer__link--sm">Расчет тарифа по России</a>
+              </li>
+            </ul>
+            <ul class="page-footer__list">
+              <li>
+                <b><a href="#" class="page-footer__link">О компании</a></b>
+              </li>
+              <li>
+                <b><a href="#" class="page-footer__link">Вакансии</a></b>
+              </li>
+              <li>
+                <b><a href="" class="page-footer__link">Документы</a></b>
+              </li>
+              <li>
+                <b><a href="" class="page-footer__link">Обратная связь</a></b>
+              </li>
+              <li>
+                <b><a href="" class="page-footer__link">Контакты</a></b>
+              </li>
+            </ul>
+          </div>
+          <div class="page-footer__item page-footer__item--contacts">
+            <a href="#" class="page-footer__logo page-footer__logo--mobile">
+              <svg>
+                <use xlink:href="assets/img/symbol/sprite.svg#footer-logo"></use>
+              </svg>
+            </a>
+            <a href="#" class="page-footer__contact">
+              <svg width="15" height="15">
+                <use xlink:href="assets/img/symbol/sprite.svg#tel"></use>
+              </svg>
+              <span>8 800 222 22 68</span>
+            </a>
+            <a href="#" class="page-footer__link page-footer__link--location">
+              <svg width="13" height="13">
+                <use xlink:href="assets/img/symbol/sprite.svg#footer-arrow"></use>
+              </svg>
+              <span class="page-footer__link-text">Приморский край</span>
+            </a>
+            <a href="mailto: inbox@busbox.guru" class="page-footer__link page-footer__link--email">inbox@busbox.guru</a>
+          </div>
+        </div>
+        <div class="page-footer__bottom">
+          <div class="page-footer__item">
+            <small class="page-footer__text">2013-2020 © ООО «Приморье»</small>
+          </div>
+          <div class="page-footer__item">
+            <a href="#" class="page-footer__link page-footer__link--sm">Политика конфиденциальности</a>
+          </div>
+          <div class="page-footer__item">
+            <small href="#" class="page-footer__text">Идея и дизайн сайта: </small>
+            <a href="#" class="page-footer__link">LEAD WAVE</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXu6wNP79AG7OHTlyBMRufLdjdvSmwo0A"></script>-->
+<script src="assets/js/app.js"></script>
+</body>
+</html>
