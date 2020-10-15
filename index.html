@@ -31,90 +31,94 @@
           </svg>
         </a>
         <div class="page-header__top">
-          <article class="area-selector">
-            <input type="checkbox" id="areaInputToggle" class="area-selector__input">
-            <label for="areaInputToggle" class="area-selector__toggle">
-              <svg width="15" height="15">
-                <use xlink:href="assets/img/symbol/sprite.svg#area"></use>
-              </svg>
-              <span>Приморский край</span>
-            </label>
-            <div class="area-selector__dropdown">
-              <div class="area-selector__column">
-                <h2 class="area-selector__title">Приморский край</h2>
-                <ul class="area-selector__list">
-                  <li class="area-selector__item">
-                    <a href="#" class="area-selector__link">Владивосток</a>
-                    <a href="#" class="area-selector__link area-selector__link--more">2 териманала</a>
-                  </li>
-                  <li class="area-selector__item">
-                    <a href="#" class="area-selector__link">Артем</a>
-                  </li>
-                  <li class="area-selector__item">
-                    <a href="#" class="area-selector__link">Уссурийск</a>
-                  </li>
-                  <li class="area-selector__item">
-                    <a href="#" class="area-selector__link">Находка</a>
-                  </li>
-                  <li class="area-selector__item">
-                    <a href="#" class="area-selector__link">Дальнегорск</a>
-                  </li>
-                </ul>
+          <div class="page-header__location">
+            <article class="area-selector">
+            <!--  <input type="checkbox" id="areaInputToggle" class="area-selector__input">-->
+              <span class="area-selector__toggle">
+                <svg>
+                  <use xlink:href="assets/img/symbol/sprite.svg#area"></use>
+                </svg>
+                <span>Приморский край</span>
+              </span>
+              <div class="area-selector__dropdown">
+                <div class="area-selector__column">
+                  <h2 class="area-selector__title">Приморский край</h2>
+                  <ul class="area-selector__list">
+                    <li class="area-selector__item">
+                      <a href="#" class="area-selector__link">Владивосток</a>
+                      <a href="#" class="area-selector__link area-selector__link--more">2 териманала</a>
+                    </li>
+                    <li class="area-selector__item">
+                      <a href="#" class="area-selector__link">Артем</a>
+                    </li>
+                    <li class="area-selector__item">
+                      <a href="#" class="area-selector__link">Уссурийск</a>
+                    </li>
+                    <li class="area-selector__item">
+                      <a href="#" class="area-selector__link">Находка</a>
+                    </li>
+                    <li class="area-selector__item">
+                      <a href="#" class="area-selector__link">Дальнегорск</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="area-selector__column">
+                  <h2 class="area-selector__title">Республика Татарстан</h2>
+                  <ul class="area-selector__list">
+                    <li class="area-selector__item">
+                      <a href="#" class="area-selector__link">Казань</a>
+                      <a href="#" class="area-selector__link area-selector__link--more">3 териманала</a>
+                    </li>
+                  </ul>
+                </div>
               </div>
-              <div class="area-selector__column">
-                <h2 class="area-selector__title">Республика Татарстан</h2>
-                <ul class="area-selector__list">
-                  <li class="area-selector__item">
-                    <a href="#" class="area-selector__link">Казань</a>
-                    <a href="#" class="area-selector__link area-selector__link--more">3 териманала</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </article>
-          <div class="page-header__contact">
+            </article>
+          </div>
+          <a href="tel: " class="page-header__contact">
             <svg width="15" height="15">
               <use xlink:href="assets/img/symbol/sprite.svg#tel"></use>
             </svg>
             <span>8 800 222 22 68</span>
-          </div>
-          <!--<div class="header-user">-->
-          <!--  <i class="header-user__icon">-->
-          <!--    <svg width="40" height="40">-->
-          <!--      <use xlink:href="assets/img/symbol/sprite.svg#user"></use>-->
-          <!--    </svg>-->
-          <!--  </i>-->
-          <!--  <input type="checkbox" name="user-login" id="user-login" class="header-user__input">-->
-          <!--  <label for="user-login" class="header-user__label">Личный кабинет</label>-->
-          <!--  <ul class="header-user__dropdown">-->
-          <!--    <li class="header-user__item">-->
-          <!--      <a href="#" class="header-user__link">Вход</a>-->
-          <!--    </li>-->
-          <!--    <li class="header-user__item">-->
-          <!--      <a href="#" class="header-user__link">Регистрация</a>-->
-          <!--    </li>-->
-          <!--  </ul>-->
-          <!--</div>-->
-          
-          <div class="header-user header-user--logged-in">
-            <i class="header-user__icon">
-              <svg width="27" height="27">
-                <use xlink:href="assets/img/symbol/sprite.svg#user-logged-in"></use>
-              </svg>
-            </i>
-            <input type="checkbox" name="user-login" id="user-logged-in" class="header-user__input">
-            <label for="user-logged-in" class="header-user__label">Пользователь</label>
-            <ul class="header-user__dropdown">
-              <li class="header-user__item">
-                <a href="#" class="header-user__link">Заказать доставку</a>
-              </li>
-              <li class="header-user__item">
-                <a href="#" class="header-user__link">Персональные данные</a>
-              </li>
-              <li class="header-user__item">
-                <a href="#" class="header-user__link">Выйти</a>
-              </li>
-            </ul>
+          </a>
+          <div class="page-header__user">
+            <!--<div class="header-user">-->
+            <!--  <i class="header-user__icon">-->
+            <!--    <svg width="40" height="40">-->
+            <!--      <use xlink:href="assets/img/symbol/sprite.svg#user"></use>-->
+            <!--    </svg>-->
+            <!--  </i>-->
+            <!--  <input type="checkbox" name="user-login" id="user-login" class="header-user__input">-->
+            <!--  <label for="user-login" class="header-user__label">Личный кабинет</label>-->
+            <!--  <ul class="header-user__dropdown">-->
+            <!--    <li class="header-user__item">-->
+            <!--      <a href="#" class="header-user__link">Вход</a>-->
+            <!--    </li>-->
+            <!--    <li class="header-user__item">-->
+            <!--      <a href="#" class="header-user__link">Регистрация</a>-->
+            <!--    </li>-->
+            <!--  </ul>-->
+            <!--</div>-->
+            
+            <div class="header-user header-user--logged-in">
+              <i class="header-user__icon">
+                <svg width="27" height="27">
+                  <use xlink:href="assets/img/symbol/sprite.svg#user-logged-in"></use>
+                </svg>
+              </i>
+            <!--  <input type="checkbox" name="user-login" id="user-logged-in" class="header-user__input">-->
+              <span class="header-user__label">Пользователь</span>
+              <ul class="header-user__dropdown">
+                <li class="header-user__item">
+                  <a href="#" class="header-user__link">Заказать доставку</a>
+                </li>
+                <li class="header-user__item">
+                  <a href="#" class="header-user__link">Персональные данные</a>
+                </li>
+                <li class="header-user__item">
+                  <a href="#" class="header-user__link">Выйти</a>
+                </li>
+              </ul>
+            </div>
           </div>
          <div class="page-header__open">
            <button id="mobileNavOpen" type="button">
@@ -134,57 +138,56 @@
                 Расчет тарифа по Приморью
               </a>
             </li>
-            <li class="main-nav__item">
-              <label href="#" class="main-nav__link" for="nav-services">
+            <li class="main-nav__item main-nav__item--dropdown">
+              <div href="#" class="main-nav__link">
                 <span>Услуги</span>
-              </label>
-              <input type="radio" name="nav-items" id="nav-services" class="main-nav__input">
+              </div>
               <ul class="main-nav__dropdown">
-                <li class="main-nav__item main-nav__item--dropdown">
+                <li class="main-nav__item">
                   <a href="#" class="main-nav__link">Грузоперевозки по Приморскому краю</a>
                 </li>
-                <li class="main-nav__item  main-nav__item--dropdown">
+                <li class="main-nav__item">
                   <a href="#" class="main-nav__link">Грузоперевозки по России</a>
                 </li>
-                <li class="main-nav__item  main-nav__item--dropdown">
+                <li class="main-nav__item">
                   <a href="#" class="main-nav__link">Забор и доставка курьером</a>
                 </li>
-                <li class="main-nav__item  main-nav__item--dropdown">
+                <li class="main-nav__item">
                   <a href="#" class="main-nav__link">Доставка посылок из интернет-магазинов</a>
                 </li>
-                <li class="main-nav__item  main-nav__item--dropdown">
+                <li class="main-nav__item">
                   <a href="#" class="main-nav__link">Реализация нестандартных логистических задач</a>
                 </li>
-                <li class="main-nav__item  main-nav__item--dropdown">
+                <li class="main-nav__item">
                   <a href="#" class="main-nav__link">Страхование груза</a>
                 </li>
               </ul>
             </li>
-            <li class="main-nav__item">
-              <label href="#" class="main-nav__link" for="nav-info">
+            <li class="main-nav__item main-nav__item--dropdown">
+              <div href="#" class="main-nav__link" for="nav-info">
                 <span>Информация</span>
-              </label>
+              </div>
               <input type="radio" name="nav-items" id="nav-info" class="main-nav__input">
               <ul class="main-nav__dropdown">
-                <li class="main-nav__item main-nav__item--dropdown">
+                <li class="main-nav__item">
                   <a href="#" class="main-nav__link">Как отправить посылку</a>
                 </li>
-                <li class="main-nav__item  main-nav__item--dropdown">
+                <li class="main-nav__item">
                   <a href="#" class="main-nav__link">Как получить посылку</a>
                 </li>
-                <li class="main-nav__item  main-nav__item--dropdown">
+                <li class="main-nav__item">
                   <a href="#" class="main-nav__link">Правила приемки и отправки грузов</a>
                 </li>
-                <li class="main-nav__item  main-nav__item--dropdown">
+                <li class="main-nav__item">
                   <a href="#" class="main-nav__link">Тарифы на перевозку</a>
                 </li>
-                <li class="main-nav__item  main-nav__item--dropdown">
+                <li class="main-nav__item">
                   <a href="#" class="main-nav__link">Упаковки грузов и виды упаковки</a>
                 </li>
-                <li class="main-nav__item  main-nav__item--dropdown">
+                <li class="main-nav__item">
                   <a href="#" class="main-nav__link">Хранение груза на складах Bus-курьер</a>
                 </li>
-                <li class="main-nav__item  main-nav__item--dropdown">
+                <li class="main-nav__item">
                   <a href="#" class="main-nav__link">Доставка грузов и багажа из Аэропорта</a>
                 </li>
               </ul>
@@ -200,6 +203,52 @@
               </a>
             </li>
           </ul>
+          <a href="tel: " class="page-header__contact page-header__contact--sticky">
+            <svg width="15" height="15">
+              <use xlink:href="assets/img/symbol/sprite.svg#tel"></use>
+            </svg>
+            <span>8 800 222 22 68</span>
+          </a>
+          <div class="page-header__user page-header__user--sticky">
+            <!--<div class="header-user">-->
+            <!--  <i class="header-user__icon">-->
+            <!--    <svg width="40" height="40">-->
+            <!--      <use xlink:href="assets/img/symbol/sprite.svg#user"></use>-->
+            <!--    </svg>-->
+            <!--  </i>-->
+            <!--  <input type="checkbox" name="user-login" id="user-login" class="header-user__input">-->
+            <!--  <label for="user-login" class="header-user__label">Личный кабинет</label>-->
+            <!--  <ul class="header-user__dropdown">-->
+            <!--    <li class="header-user__item">-->
+            <!--      <a href="#" class="header-user__link">Вход</a>-->
+            <!--    </li>-->
+            <!--    <li class="header-user__item">-->
+            <!--      <a href="#" class="header-user__link">Регистрация</a>-->
+            <!--    </li>-->
+            <!--  </ul>-->
+            <!--</div>-->
+            
+            <div class="header-user header-user--logged-in">
+              <i class="header-user__icon">
+                <svg width="27" height="27">
+                  <use xlink:href="assets/img/symbol/sprite.svg#user-logged-in"></use>
+                </svg>
+              </i>
+            <!--  <input type="checkbox" name="user-login" id="user-logged-in" class="header-user__input">-->
+              <span class="header-user__label">Пользователь</span>
+              <ul class="header-user__dropdown">
+                <li class="header-user__item">
+                  <a href="#" class="header-user__link">Заказать доставку</a>
+                </li>
+                <li class="header-user__item">
+                  <a href="#" class="header-user__link">Персональные данные</a>
+                </li>
+                <li class="header-user__item">
+                  <a href="#" class="header-user__link">Выйти</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </nav>
         <div class="mobile-nav">
           <div class="mobile-nav__header">
@@ -208,7 +257,7 @@
                 <use xlink:href="assets/img/symbol/sprite.svg#logo"></use>
               </svg>
             </a>
-            <a href="#" class="mobile-nav__contact">
+            <a href="tel: " class="mobile-nav__contact">
               <svg width="15" height="15">
                 <use xlink:href="assets/img/symbol/sprite.svg#tel"></use>
               </svg>
@@ -224,7 +273,7 @@
                 <a href="#" class="mobile-nav__link">Рассчет тарифа по Приморью</a>
               </li>
               <li class="mobile-nav__item">
-                <input type="checkbox" name="mobile-services" id="mobile-services" class="mobile-nav__input">
+                <input type="radio" name="mobile-nav" id="mobile-services" class="mobile-nav__input">
                 <label for="mobile-services" class="mobile-nav__link mobile-nav__link--toggle">Услуги</label>
                 <ul class="mobile-nav__list mobile-nav__list--inner">
                   <li class="mobile-nav__item">
@@ -251,7 +300,7 @@
                 </ul>
               </li>
               <li class="mobile-nav__item">
-                <input type="checkbox" name="mobile-info" id="mobile-info" class="mobile-nav__input">
+                <input type="radio" name="mobile-nav" id="mobile-info" class="mobile-nav__input">
                 <label for="mobile-info" class="mobile-nav__link mobile-nav__link--toggle">Информация</label>
                 <ul class="mobile-nav__list mobile-nav__list--inner">
                   <li class="mobile-nav__item">
@@ -291,6 +340,22 @@
               <div class="mobile-nav__text">Идея и дизайн сайта: <a href="#" class="link">Lead Wave</a></div>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="page-header__breadcrumb">
+        <div class="breadcrumb">
+          <ul class="breadcrumb__list">
+            <li class="breadcrumb__item">
+              <a href="#" class="breadcrumb__link">Главная</a>
+            </li>
+            <li class="breadcrumb__item">
+              <a href="#" class="breadcrumb__link">Сервис</a>
+            </li>
+            <li class="breadcrumb__item breadcrumb__item--active">
+              <a class="breadcrumb__link">Расчет стоимости перевозки по Приморскому краю</a>
+            </li>
+          </ul>
+        
         </div>
       </div>
     </header>
@@ -358,7 +423,7 @@
         <p class="page-section__text">И даже самые труднодоступные населенные пункты региона</p>
         <ul class="coverage-list">
           <li class="coverage-list__item" data-count="9">
-            <p>Пунктов отправления   в ключевых городах региона</p>
+            <p>Пунктов отправления<br />в ключевых городах региона</p>
             <div class="coverage-list__link">
               <a href="#" class="link link--gray">
                 <svg width="22" height="21">
@@ -369,7 +434,7 @@
             </div>
           </li>
           <li class="coverage-list__item" data-count="50">
-            <p>Населенных пунктов для получения ваших посылок в Приморье</p>
+            <p>Населенных пунктов<br /> для получения ваших посылок в<br /> Приморье</p>
             <div class="coverage-list__link">
               <a href="#" class="link link--gray">
                 <svg width="22" height="21">
@@ -380,14 +445,14 @@
             </div>
           </li>
           <li class="coverage-list__item" data-count="58">
-            <p>Рейсовых автобуса ежедневно отправляет ваши посылки</p>
+            <p>Рейсовых автобуса<br /> ежедневно отправляет ваши<br /> посылки</p>
           </li>
         </ul>
       </div>
     </section>
     <section class="page-section">
       <div class="page-section__container">
-        <h2 class="page-section__title">Предлагаем удобный сервис для вашего комфорта</h2>
+        <h2 class="page-section__title">Предлагаем удобный сервис <br />для вашего комфорта</h2>
         <ul class="services-list">
           <li class="services-list__item">
             <div class="services-list__icon">
@@ -456,8 +521,8 @@
     </section>
     <section class="page-section">
       <div class="page-section__container">
-        <h2 class="page-section__title">Решаем нестандартные логистические задачи</h2>
-        <p class="page-section__text">Нужно организовать доставку нестандартного груза в очень сжатые сроки? Трудно найти исполнителя? Мы предложим индивидуальное решение вашей задачи!</p>
+        <h2 class="page-section__title">Решаем нестандартные<br />логистические задачи</h2>
+        <p class="page-section__text">Нужно организовать доставку нестандартного груза в очень сжатые сроки?<br /> Трудно найти исполнителя? Мы предложим индивидуальное решение вашей задачи!</p>
         <div class="page-section__row">
           <form action="#" class="form form--send-cargo">
             <div class="form__field">
@@ -565,7 +630,8 @@
                 </div>
                 <div class="swiper-pagination"></div>
               </div>
-            
+              <button class="swiper-button swiper-button-prev"></button>
+              <button class="swiper-button swiper-button-next"></button>
             </div>
           </section>
         </div>
@@ -574,38 +640,40 @@
     <section class="page-section">
       <div class="page-section__container">
         <h2 class="page-section__title">Помогаем бизнесу</h2>
-        <p class="page-section__text">С нами работает более 500 компаний, которые регулярно отправляют грузы  по Приморскому краю и в Хабаровск.</p>
+        <p class="page-section__text">С нами работает более 500 компаний, которые регулярно отправляют грузы<br />по Приморскому краю и в Хабаровск.</p>
         <div class="partners">
           <div class="partners__item">
-            <svg width="110" height="27">
+            <svg>
               <use xlink:href="assets/img/symbol/sprite.svg#sber"></use>
             </svg>
           </div>
           <div class="partners__item">
-            <svg width="118" height="25">
+            <svg>
               <use xlink:href="assets/img/symbol/sprite.svg#aeroflot"></use>
             </svg>
           </div>
           <div class="partners__item">
-            <svg width="120" height="18">
+            <svg >
               <use xlink:href="assets/img/symbol/sprite.svg#giperauto"></use>
             </svg>
           </div>
           <div class="partners__item">
-            <svg width="112" height="21">
+            <svg>
               <use xlink:href="assets/img/symbol/sprite.svg#unilab"></use>
             </svg>
           </div>
         </div>
       </div>
     </section>
-    <section class="page-section">
+    <section class="page-section page-section--article">
       <div class="page-section__container">
-        <h2 class="page-section__title">Грузоперевозки по Приморскому краю</h2>
        <div class="page-section__row">
          <div>
-           <p class="page-section__text page-section__text--shadow">Мы предлагаем приемлемые тарифы, высокую скорость доставки и ручаемся за каждый наш груз. Мы не работаем по принципу "наборных грузов", а доставляем вашу посылку в ближайшее время с момента оформления заказа...</p>
-           <button type="button" class="page-section__more">Читать подробнее</button>
+           <h2 class="page-section__title">Грузоперевозки по Приморскому краю</h2>
+           <div class="page-section__truncate">
+             <p>Мы предлагаем приемлемые тарифы, высокую скорость доставки и ручаемся за каждый наш груз. Мы не работаем по принципу "наборных грузов", а доставляем вашу посылку в ближайшее время с момента оформления заказа. Это осуществляется за счет регулярного движения междугородних автобусов и наличию большого количества рейсов по многим направлениям. Мы – Баскурьер, предлагаем нашим клиентам следующие курьерские услуги: Доставка и забор грузов от двери до двери, забор грузов в Аэропорту г. Владивостока, срочная доставка груза в г. Хабаровск на ежедневной основе, срочная доставка документов по Приморскому краю от 2 до 24 часов.</p>
+             <p>У наших клиентов есть уникальная возможность – хранение на складе в течение суток БЕСПЛАТНОЕ! А это значит, что вы </div></p>
+          <button type="button" class="page-section__more">Читать подробнее</button>
          </div>
          <div class="page-section__images">
            <img class="page-section__img"
@@ -756,7 +824,7 @@
                 <use xlink:href="assets/img/symbol/sprite.svg#footer-logo"></use>
               </svg>
             </a>
-            <a href="#" class="page-footer__contact">
+            <a href="tel: " class="page-footer__contact">
               <svg width="15" height="15">
                 <use xlink:href="assets/img/symbol/sprite.svg#tel"></use>
               </svg>
