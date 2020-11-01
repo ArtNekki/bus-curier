@@ -21470,7 +21470,7 @@ function () {
       this.$pageContainer.classList.add(this.activeMapClass);
 
       if (this.$map) {
-        Object(_Map__WEBPACK_IMPORTED_MODULE_1__["default"])(this.$map, _data_contactCoords_json__WEBPACK_IMPORTED_MODULE_0__['vladivostok'].coords);
+        this.mapApi = Object(_Map__WEBPACK_IMPORTED_MODULE_1__["default"])(this.$map, _data_contactCoords_json__WEBPACK_IMPORTED_MODULE_0__['vladivostok'].coords);
       }
 
       this.breakpoint.addListener(this.initTabs.bind(this));
@@ -21479,6 +21479,7 @@ function () {
       this.$pointsSwitcher.addEventListener('click', this.switchFilter.bind(this));
       this.$pointsList.addEventListener('click', this.showPointCard.bind(this));
       this.$pointCard.addEventListener('click', this.hidePointCard.bind(this));
+      this.$pointCard.addEventListener('click', this.zoomToPoint.bind(this));
       this.$map.addEventListener('click', this.showPointCard.bind(this));
       this.$select.addEventListener('click', this.loadPointsList.bind(this));
       this.$pageContainer.addEventListener('click', this.setActivePoint.bind(this));
@@ -21586,6 +21587,22 @@ function () {
         this.activePoint = point;
         this.activePoint.classList.add('active');
       }
+    }
+  }, {
+    key: "zoomToPoint",
+    value: function zoomToPoint(e) {
+      var zoom = e.target.closest('[data-zoom-id]');
+      if (!zoom) return;
+      var currentCoords = _data_contactCoords_json__WEBPACK_IMPORTED_MODULE_0__['vladivostok'].coords.filter(function (item) {
+        return item.id === zoom.dataset.zoomId;
+      })[0];
+
+      if (currentCoords) {
+        this.mapApi.setCenter(new google.maps.LatLng(currentCoords.lat, currentCoords.lng));
+        this.mapApi.setZoom(16);
+      }
+
+      this.$pageContainer.classList.remove('page-contacts--details');
     }
   }]);
 
@@ -21783,8 +21800,8 @@ function initMap(mapContainer, coords) {
     center: new google.maps.LatLng(coords[0].lat, coords[0].lng),
     disableDefaultUI: true,
     zoomControl: true,
-    gestureHandling: 'greedy',
-    scrollwheel: false,
+    // gestureHandling: 'greedy',
+    // scrollwheel: false,
     styles: [{
       stylers: [{
         saturation: -100
@@ -21798,6 +21815,7 @@ function initMap(mapContainer, coords) {
       html: Object(_MarkerTemplate__WEBPACK_IMPORTED_MODULE_1__["generateMarkerTemplate"])(marker.id)
     });
   });
+  return map;
 } // document.addEventListener('DOMContentLoaded', function() {
 //   initMap('map', markerCoords);
 // });
