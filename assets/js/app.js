@@ -21794,14 +21794,16 @@ var _data_pickupCoords_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__
 
 
 function initMap(mapContainer, coords) {
+  var gestureHandling = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'none';
+  var scrollWheel = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
   if (!mapContainer) return;
   var map = new google.maps.Map(mapContainer, {
     zoom: 13,
     center: new google.maps.LatLng(coords[0].lat, coords[0].lng),
     disableDefaultUI: true,
     zoomControl: true,
-    // gestureHandling: 'greedy',
-    // scrollwheel: false,
+    gestureHandling: gestureHandling,
+    scrollWheel: scrollWheel,
     styles: [{
       stylers: [{
         saturation: -100
