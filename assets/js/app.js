@@ -21418,6 +21418,184 @@ var dropDown; // document.addEventListener('mousemove', function(e) {
 
 /***/ }),
 
+/***/ "./src/assets/js/modules/Contacts/Contacts.js":
+/*!****************************************************!*\
+  !*** ./src/assets/js/modules/Contacts/Contacts.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ContactsPage; });
+/* harmony import */ var _data_contactCoords_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../data/contactCoords.json */ "./src/data/contactCoords.json");
+var _data_contactCoords_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../../../data/contactCoords.json */ "./src/data/contactCoords.json", 1);
+/* harmony import */ var _Map__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Map */ "./src/assets/js/modules/Map/index.js");
+/* harmony import */ var tabbyjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tabbyjs */ "./node_modules/tabbyjs/dist/js/tabby.min.js");
+/* harmony import */ var tabbyjs__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(tabbyjs__WEBPACK_IMPORTED_MODULE_2__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+
+var ContactsPage =
+/*#__PURE__*/
+function () {
+  function ContactsPage() {
+    _classCallCheck(this, ContactsPage);
+
+    this.$pageContainer = document.getElementById('contactsPage');
+    this.$tabsContainer = this.$pageContainer.querySelector('.tabs');
+    this.$map = this.$pageContainer.querySelector('#contactsMap');
+    this.$toggleList = this.$pageContainer.querySelector('.page-contacts__toggle');
+    this.$pointsSwitcher = this.$pageContainer.querySelector('.page-contacts__switcher');
+    this.$pointsList = this.$pageContainer.querySelector('.points-list');
+    this.$pointCard = this.$pageContainer.querySelector('.point-card');
+    this.$select = this.$pageContainer.querySelector('#selectCity');
+    this.breakpoint = window.matchMedia("(min-width: 768px)");
+    this.listIsOpen = true;
+    this.activeMapClass = 'page-contacts--map-panel';
+    this.activePoint = null;
+    this.initPage();
+  }
+
+  _createClass(ContactsPage, [{
+    key: "initPage",
+    value: function initPage() {
+      this.$pageContainer.classList.add(this.activeMapClass);
+
+      if (this.$map) {
+        Object(_Map__WEBPACK_IMPORTED_MODULE_1__["default"])(this.$map, _data_contactCoords_json__WEBPACK_IMPORTED_MODULE_0__['vladivostok'].coords);
+      }
+
+      this.breakpoint.addListener(this.initTabs.bind(this));
+      this.initTabs();
+      this.$toggleList.addEventListener('click', this.toggleList.bind(this));
+      this.$pointsSwitcher.addEventListener('click', this.switchFilter.bind(this));
+      this.$pointsList.addEventListener('click', this.showPointCard.bind(this));
+      this.$pointCard.addEventListener('click', this.hidePointCard.bind(this));
+      this.$map.addEventListener('click', this.showPointCard.bind(this));
+      this.$select.addEventListener('click', this.loadPointsList.bind(this));
+      this.$pageContainer.addEventListener('click', this.setActivePoint.bind(this));
+      this.loadPointsList();
+    }
+  }, {
+    key: "initTabs",
+    value: function initTabs() {
+      if (!this.$tabsContainer) return;
+      var tabs = new tabbyjs__WEBPACK_IMPORTED_MODULE_2___default.a('.page-contacts .tabs > ul');
+
+      if (this.breakpoint.matches) {
+        tabs.destroy();
+      } else {
+        tabs = new tabbyjs__WEBPACK_IMPORTED_MODULE_2___default.a('.page-contacts .tabs > ul');
+      }
+
+      this.toggleTabs();
+      tabs.toggle('#contactsMapPanel');
+    }
+  }, {
+    key: "toggleTabs",
+    value: function toggleTabs() {
+      var _this = this;
+
+      this.$pageContainer.addEventListener('tabby', function (event) {
+        if (event.detail.content.id.toLowerCase().indexOf('map') != -1) {
+          _this.$pageContainer.classList.add(_this.activeMapClass);
+        } else {
+          _this.$pageContainer.classList.remove(_this.activeMapClass);
+        }
+      });
+    }
+  }, {
+    key: "toggleList",
+    value: function toggleList(e) {
+      if (this.listIsOpen) {
+        this.$pageContainer.classList.add('page-contacts--hide-list');
+        e.target.textContent = 'Скрыть список';
+      } else {
+        this.$pageContainer.classList.remove('page-contacts--hide-list');
+        e.target.textContent = 'Показать список';
+      }
+
+      this.listIsOpen = !this.listIsOpen;
+    }
+  }, {
+    key: "switchFilter",
+    value: function switchFilter(e) {
+      var btn = e.target.closest('button');
+      if (!btn) return;
+      btn.parentNode.querySelectorAll('button').forEach(function (el) {
+        el.classList.remove('active');
+      });
+      btn.classList.add('active');
+      this.loadPointsList();
+    }
+  }, {
+    key: "showPointCard",
+    value: function showPointCard(e) {
+      e.stopPropagation();
+      e.preventDefault();
+      var point = e.target.closest('[data-point-id]');
+      if (!point) return;
+      this.$pageContainer.classList.add('page-contacts--details');
+      this.setActivePoint(point);
+      this.loadPointCard();
+    }
+  }, {
+    key: "hidePointCard",
+    value: function hidePointCard(e) {
+      var btn = e.target.closest('[data-close-btn]');
+      if (!btn) return;
+      this.$pageContainer.classList.remove('page-contacts--details');
+    }
+  }, {
+    key: "loadPointsList",
+    value: function loadPointsList() {
+      var _this2 = this;
+
+      this.$pointsList.classList.add('loading');
+      setTimeout(function () {
+        _this2.$pointsList.classList.remove('loading');
+      }, 1500);
+    }
+  }, {
+    key: "loadPointCard",
+    value: function loadPointCard() {
+      var _this3 = this;
+
+      this.$pointCard.classList.add('loading');
+      setTimeout(function () {
+        _this3.$pointCard.classList.remove('loading');
+      }, 1500);
+    }
+  }, {
+    key: "setActivePoint",
+    value: function setActivePoint(point) {
+      if (this.activePoint) {
+        this.activePoint.classList.remove('active');
+        this.activePoint = null;
+      }
+
+      if (point.dataset && point.dataset.pointId) {
+        this.activePoint = point;
+        this.activePoint.classList.add('active');
+      }
+    }
+  }]);
+
+  return ContactsPage;
+}();
+
+
+
+/***/ }),
+
 /***/ "./src/assets/js/modules/Contacts/index.js":
 /*!*************************************************!*\
   !*** ./src/assets/js/modules/Contacts/index.js ***!
@@ -21427,47 +21605,10 @@ var dropDown; // document.addEventListener('mousemove', function(e) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _data_contactCoords_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../data/contactCoords.json */ "./src/data/contactCoords.json");
-var _data_contactCoords_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../../../data/contactCoords.json */ "./src/data/contactCoords.json", 1);
-/* harmony import */ var _Map__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Map */ "./src/assets/js/modules/Map/index.js");
-/* harmony import */ var tabbyjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tabbyjs */ "./node_modules/tabbyjs/dist/js/tabby.min.js");
-/* harmony import */ var tabbyjs__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(tabbyjs__WEBPACK_IMPORTED_MODULE_2__);
-
-
-
-
-function initTabs(breakpoint) {
-  var tabs = new tabbyjs__WEBPACK_IMPORTED_MODULE_2___default.a('[data-contact-tabs] ul');
-
-  if (breakpoint.matches) {
-    tabs.destroy();
-  } else {
-    tabs = new tabbyjs__WEBPACK_IMPORTED_MODULE_2___default.a('[data-contact-tabs] ul');
-  }
-}
+/* harmony import */ var _Contacts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Contacts */ "./src/assets/js/modules/Contacts/Contacts.js");
 
 document.addEventListener('DOMContentLoaded', function () {
-  var contactsMap = document.getElementById('contactsMap');
-
-  if (contactsMap) {
-    Object(_Map__WEBPACK_IMPORTED_MODULE_1__["default"])(contactsMap, _data_contactCoords_json__WEBPACK_IMPORTED_MODULE_0__['vladivostok'].coords);
-  }
-});
-document.addEventListener('DOMContentLoaded', function () {
-  var tabsContainer = document.querySelector('[data-contact-tabs]');
-
-  if (tabsContainer) {
-    var breakpoint = window.matchMedia("(min-width: 768px)");
-    breakpoint.addListener(initTabs);
-    initTabs(breakpoint);
-  }
-});
-document.addEventListener('tabby', function (event) {
-  if (event.detail.content.classList.contains('page-contacts__map')) {
-    document.documentElement.classList.add('page--is-map-active');
-  } else {
-    document.documentElement.classList.remove('page--is-map-active');
-  }
+  new _Contacts__WEBPACK_IMPORTED_MODULE_0__["default"]();
 });
 
 /***/ }),
@@ -21612,8 +21753,8 @@ var createHTMLMapMarker = function createHTMLMapMarker(_ref) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "generateMarkerTemplate", function() { return generateMarkerTemplate; });
 // Генерация шаблона маркера
-var generateMarkerTemplate = function generateMarkerTemplate() {
-  return "\n    <div class=\"marker\">\n        <svg width=\"26\" height=\"44\" viewBox=\"0 0 26 44\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n            <path d=\"M13.0014 1C6.37228 1 1 6.37228 1 13.0014C1 18.6831 4.94843 23.442 10.2523 24.6851L13.0014 42.4038L15.7505 24.6824V24.6851C21.0516 23.442 25 18.6831 25 13.0014C25.0027 6.37501 19.6305 1 13.0014 1ZM13.0014 19.2499C9.55128 19.2499 6.75562 16.4542 6.75562 13.0041C6.75562 9.55402 9.55128 6.75836 13.0014 6.75836C16.4515 6.75836 19.2471 9.55402 19.2471 13.0041C19.2499 16.4515 16.4515 19.2499 13.0014 19.2499Z\" fill=\"#FFDC00\" stroke=\"black\" stroke-width=\"2\" stroke-miterlimit=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n            <path d=\"M13.0021 19.2472C16.4515 19.2472 19.2478 16.4509 19.2478 13.0014C19.2478 9.55201 16.4515 6.75569 13.0021 6.75569C9.55266 6.75569 6.75635 9.55201 6.75635 13.0014C6.75635 16.4509 9.55266 19.2472 13.0021 19.2472Z\" stroke=\"black\" stroke-width=\"1.02678\" stroke-miterlimit=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n        </svg>\n    </div>\n  ";
+var generateMarkerTemplate = function generateMarkerTemplate(id) {
+  return "\n    <div data-point-id=".concat(id, " class=\"map__point\">\n        <svg width=\"26\" height=\"44\" viewBox=\"0 0 26 44\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n            <path d=\"M13.0014 1C6.37228 1 1 6.37228 1 13.0014C1 18.6831 4.94843 23.442 10.2523 24.6851L13.0014 42.4038L15.7505 24.6824V24.6851C21.0516 23.442 25 18.6831 25 13.0014C25.0027 6.37501 19.6305 1 13.0014 1ZM13.0014 19.2499C9.55128 19.2499 6.75562 16.4542 6.75562 13.0041C6.75562 9.55402 9.55128 6.75836 13.0014 6.75836C16.4515 6.75836 19.2471 9.55402 19.2471 13.0041C19.2499 16.4515 16.4515 19.2499 13.0014 19.2499Z\"  stroke=\"black\" stroke-width=\"2\" stroke-miterlimit=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n            <path d=\"M13.0021 19.2472C16.4515 19.2472 19.2478 16.4509 19.2478 13.0014C19.2478 9.55201 16.4515 6.75569 13.0021 6.75569C9.55266 6.75569 6.75635 9.55201 6.75635 13.0014C6.75635 16.4509 9.55266 19.2472 13.0021 19.2472Z\" stroke=\"black\" stroke-width=\"1.02678\" stroke-miterlimit=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n        </svg>\n    </div>\n  ");
 };
 
 /***/ }),
@@ -21654,7 +21795,7 @@ function initMap(mapContainer, coords) {
     Object(_HtmlMapMarker__WEBPACK_IMPORTED_MODULE_0__["default"])({
       latlng: new google.maps.LatLng(marker.lat, marker.lng),
       map: map,
-      html: Object(_MarkerTemplate__WEBPACK_IMPORTED_MODULE_1__["generateMarkerTemplate"])()
+      html: Object(_MarkerTemplate__WEBPACK_IMPORTED_MODULE_1__["generateMarkerTemplate"])(marker.id)
     });
   });
 } // document.addEventListener('DOMContentLoaded', function() {
@@ -22307,7 +22448,7 @@ Object(tippy_js__WEBPACK_IMPORTED_MODULE_0__["default"])('[data-tippy-content]',
 /*! exports provided: vladivostok, default */
 /***/ (function(module) {
 
-module.exports = {"vladivostok":{"coords":[{"lat":"43.1488997","lng":"131.9090131"},{"lat":"43.1592569","lng":"131.9147171"}]}};
+module.exports = {"vladivostok":{"coords":[{"id":"point-1","lat":"43.1488997","lng":"131.9090131"},{"id":"point-2","lat":"43.1592569","lng":"131.9147171"}]}};
 
 /***/ }),
 

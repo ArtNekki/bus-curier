@@ -360,48 +360,46 @@
       </div>
     </header>
     
-    <div class="page-contacts">
+    <div id="contactsPage" class="page-contacts">
       <div class="page-contacts__main">
-        <div data-contact-tabs class="tabs tabs--contacts">
+        <div class="tabs tabs--contacts">
           <ul class="tabs__nav">
             <li>
-              <a href="#contactsListPanel">Списком</a>
+              <a  href="#contactsMapPanel">На карте</a>
             </li>
             <li>
-              <a data-tabby-default href="#contactsMapPanel">На карте</a>
+              <a  data-tabby-default href="#contactsListPanel">Списком</a>
             </li>
           </ul>
         </div>
         <div class="page-contacts__switcher">
-          <div class="contact-actions">
-            <button class="contact-actions__btn contact-actions__btn--active">
-              <svg width="15px" height="18px">
-                <use xlink:href="assets/img/symbol/sprite.svg#location"></use>
-              </svg>
-              <span>Все адреса</span>
-            </button>
-            <button class="contact-actions__btn">
-              <svg width="18px" height="18px">
-                <use xlink:href="assets/img/symbol/sprite.svg#accept"></use>
-              </svg>
-              <span>Прием грузов</span>
-            </button>
-            <button class="contact-actions__btn">
-              <svg width="18px" height="18px">
-                <use xlink:href="assets/img/symbol/sprite.svg#give"></use>
-              </svg>
-              <span>Выдача грузов</span>
-            </button>
-            <button class="contact-actions__btn">
-              <svg width="18px" height="18px">
-                <use xlink:href="assets/img/symbol/sprite.svg#office"></use>
-              </svg>
-              <span>Офис</span>
-            </button>
-          </div>
+          <button type="button" class="page-contacts__btn active">
+            <svg class="icon" width="15px" height="18px">
+              <use xlink:href="assets/img/symbol/sprite.svg#location"></use>
+            </svg>
+            <span>Все адреса</span>
+          </button>
+          <button type="button" class="page-contacts__btn">
+            <svg class="icon" width="18px" height="18px">
+              <use xlink:href="assets/img/symbol/sprite.svg#accept"></use>
+            </svg>
+            <span>Прием грузов</span>
+          </button>
+          <button type="button" class="page-contacts__btn">
+            <svg class="icon" width="18px" height="18px">
+              <use xlink:href="assets/img/symbol/sprite.svg#give"></use>
+            </svg>
+            <span>Выдача грузов</span>
+          </button>
+          <button type="button" class="page-contacts__btn">
+            <svg class="icon" width="18px" height="18px">
+              <use xlink:href="assets/img/symbol/sprite.svg#office"></use>
+            </svg>
+            <span>Офис</span>
+          </button>
         </div>
         <div class="page-contacts__select">
-          <div class="select">
+          <div id="selectCity" class="select">
             <select id="user-city" name="user-city" class="select__field">
               <option value="">Выберите город</option>
               <option value="nakhodka">Находка</option>
@@ -411,183 +409,217 @@
         </div>
     
         <div id="contactsListPanel" class="page-contacts__list">
-         <div class="filter-list">
-           <ul class="filter-list__scroll">
-             <li class="filter-list__item">
-               <a href="#" class="link link--blue link--lg">
+         <div class="points-list">
+           <div class="preloader">
+             <svg version="1.1"
+                  width="60"
+                  height="60"
+                  class="svg-loader"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  x="0px"
+                  y="0px"
+                  viewBox="0 0 80 80"
+                  xml:space="preserve">
+           
+           	<path
+               id="spinner"
+               fill="#FFDC00"
+               d="M40,72C22.4,72,8,57.6,8,40C8,22.4,
+           		22.4,8,40,8c17.6,0,32,14.4,32,32c0,1.1-0.9,2-2,2
+           		s-2-0.9-2-2c0-15.4-12.6-28-28-28S12,24.6,12,40s12.6,
+           		28,28,28c1.1,0,2,0.9,2,2S41.1,72,40,72z"
+             >
+           
+           		<animateTransform
+                 attributeType="xml"
+                 attributeName="transform"
+                 type="rotate"
+                 from="0 40 40"
+                 to="360 40 40"
+                 dur="0.6s"
+                 repeatCount="indefinite"
+               />
+           	</path>
+           </svg>
+           </div>
+           
+           <ul class="points-list__scroll">
+             <li class="points-list__item">
+               <a href="#" class="link link--blue link--lg" data-point-id="point-1">
                  <span class="link__text">Владивосток, Автовокзал</span>
                </a>
-               <button class="filter-list__action" data-tippy-content="Выдача грузов">
-                 <svg width="18px" height="18px">
+               <button class="points-list__action" data-tippy-content="Выдача грузов">
+                 <svg width="18px" height="18px" class="icon">
                    <use xlink:href="assets/img/symbol/sprite.svg#accept"></use>
                  </svg>
                </button>
-               <button class="filter-list__action" data-tippy-content="Прием грузов">
-                 <svg width="18px" height="18px">
+               <button class="points-list__action" data-tippy-content="Прием грузов">
+                 <svg width="18px" height="18px" class="icon">
                    <use xlink:href="assets/img/symbol/sprite.svg#give"></use>
                  </svg>
                </button>
-               <button class="filter-list__action" data-tippy-content="Офис">
-                 <svg width="18px" height="18px">
+               <button class="points-list__action" data-tippy-content="Офис">
+                 <svg width="18px" height="18px" class="icon">
                    <use xlink:href="assets/img/symbol/sprite.svg#office"></use>
                  </svg>
                </button>
-               <div class="filter-list__text">Русская ул., 2а, ст. 3.</div>
-               <div class="filter-list__text filter-list__text--status"></div>
+               <div class="points-list__text">Русская ул., 2а, ст. 3.</div>
+               <div class="points-list__text points-list__text--status"></div>
              </li>
-             <li class="filter-list__item">
-               <a href="#" class="link link--blue link--lg">
+             <li class="points-list__item">
+               <a href="#" class="link link--blue link--lg" data-point-id="point-2">
                  <span class="link__text">Владивосток, Гоголя</span>
                </a>
-               <button class="filter-list__action" data-tippy-content="Выдача грузов">
-                 <svg width="18px" height="18px">
+               <button class="points-list__action" data-tippy-content="Выдача грузов">
+                 <svg width="18px" height="18px" class="icon">
                    <use xlink:href="assets/img/symbol/sprite.svg#accept"></use>
                  </svg>
                </button>
-               <button class="filter-list__action" data-tippy-content="Прием грузов">
-                 <svg width="18px" height="18px">
+               <button class="points-list__action" data-tippy-content="Прием грузов">
+                 <svg width="18px" height="18px" class="icon">
                    <use xlink:href="assets/img/symbol/sprite.svg#give"></use>
                  </svg>
                </button>
-               <button class="filter-list__action" data-tippy-content="Офис">
-                 <svg width="18px" height="18px">
+               <button class="points-list__action" data-tippy-content="Офис">
+                 <svg width="18px" height="18px" class="icon">
                    <use xlink:href="assets/img/symbol/sprite.svg#office"></use>
                  </svg>
                </button>
-               <div class="filter-list__text">Русская ул., 2а, ст. 3.</div>
-               <div class="filter-list__text filter-list__text--status"></div>
+               <div class="points-list__text">Русская ул., 2а, ст. 3.</div>
+               <div class="points-list__text points-list__text--status"></div>
              </li>
-             <li class="filter-list__item">
-               <a href="#" class="link link--blue link--lg">
+             <li class="points-list__item">
+               <a href="#" class="link link--blue link--lg" data-point-id="point-3">
                  <span class="link__text">Артем</span>
                </a>
-               <button class="filter-list__action" data-tippy-content="Выдача грузов">
-                 <svg width="18px" height="18px">
+               <button class="points-list__action" data-tippy-content="Выдача грузов">
+                 <svg width="18px" height="18px" class="icon">
                    <use xlink:href="assets/img/symbol/sprite.svg#accept"></use>
                  </svg>
                </button>
-               <button class="filter-list__action" data-tippy-content="Прием грузов">
-                 <svg width="18px" height="18px">
+               <button class="points-list__action" data-tippy-content="Прием грузов">
+                 <svg width="18px" height="18px" class="icon">
                    <use xlink:href="assets/img/symbol/sprite.svg#give"></use>
                  </svg>
                </button>
-               <button class="filter-list__action" data-tippy-content="Офис">
-                 <svg width="18px" height="18px">
+               <button class="points-list__action" data-tippy-content="Офис">
+                 <svg width="18px" height="18px" class="icon">
                    <use xlink:href="assets/img/symbol/sprite.svg#office"></use>
                  </svg>
                </button>
-               <div class="filter-list__text">Русская ул., 2а, ст. 3.</div>
-               <div class="filter-list__text filter-list__text--status"></div>
+               <div class="points-list__text">Русская ул., 2а, ст. 3.</div>
+               <div class="points-list__text points-list__text--status"></div>
              </li>
-             <li class="filter-list__item">
-               <a href="#" class="link link--blue link--lg">
+             <li class="points-list__item">
+               <a href="#" class="link link--blue link--lg" data-point-id="point-4">
                  <span class="link__text">Уссурийск</span>
                </a>
-               <button class="filter-list__action" data-tippy-content="Выдача грузов">
-                 <svg width="18px" height="18px">
+               <button class="points-list__action" data-tippy-content="Выдача грузов">
+                 <svg width="18px" height="18px" class="icon">
                    <use xlink:href="assets/img/symbol/sprite.svg#accept"></use>
                  </svg>
                </button>
-               <button class="filter-list__action" data-tippy-content="Прием грузов">
-                 <svg width="18px" height="18px">
+               <button class="points-list__action" data-tippy-content="Прием грузов">
+                 <svg width="18px" height="18px" class="icon">
                    <use xlink:href="assets/img/symbol/sprite.svg#give"></use>
                  </svg>
                </button>
-               <button class="filter-list__action" data-tippy-content="Офис">
-                 <svg width="18px" height="18px">
+               <button class="points-list__action" data-tippy-content="Офис">
+                 <svg width="18px" height="18px" class="icon">
                    <use xlink:href="assets/img/symbol/sprite.svg#office"></use>
                  </svg>
                </button>
-               <div class="filter-list__text">Русская ул., 2а, ст. 3.</div>
-               <div class="filter-list__text filter-list__text--status">Только забор</div>
+               <div class="points-list__text">Русская ул., 2а, ст. 3.</div>
+               <div class="points-list__text points-list__text--status">Только забор</div>
              </li>
-             <li class="filter-list__item">
-               <a href="#" class="link link--blue link--lg">
+             <li class="points-list__item">
+               <a href="#" class="link link--blue link--lg" data-point-id="point-5">
                  <span class="link__text">Уссурийск</span>
                </a>
-               <button class="filter-list__action" data-tippy-content="Выдача грузов">
-                 <svg width="18px" height="18px">
+               <button class="points-list__action" data-tippy-content="Выдача грузов">
+                 <svg width="18px" height="18px" class="icon">
                    <use xlink:href="assets/img/symbol/sprite.svg#accept"></use>
                  </svg>
                </button>
-               <button class="filter-list__action" data-tippy-content="Прием грузов">
-                 <svg width="18px" height="18px">
+               <button class="points-list__action" data-tippy-content="Прием грузов">
+                 <svg width="18px" height="18px" class="icon">
                    <use xlink:href="assets/img/symbol/sprite.svg#give"></use>
                  </svg>
                </button>
-               <button class="filter-list__action" data-tippy-content="Офис">
-                 <svg width="18px" height="18px">
+               <button class="points-list__action" data-tippy-content="Офис">
+                 <svg width="18px" height="18px" class="icon">
                    <use xlink:href="assets/img/symbol/sprite.svg#office"></use>
                  </svg>
                </button>
-               <div class="filter-list__text">Русская ул., 2а, ст. 3.</div>
-               <div class="filter-list__text filter-list__text--status">Только забор</div>
+               <div class="points-list__text">Русская ул., 2а, ст. 3.</div>
+               <div class="points-list__text points-list__text--status">Только забор</div>
              </li>
-             <li class="filter-list__item">
-               <a href="#" class="link link--blue link--lg">
+             <li class="points-list__item">
+               <a href="#" class="link link--blue link--lg" data-point-id="point-6">
                  <span class="link__text">Находка</span>
                </a>
-               <button class="filter-list__action" data-tippy-content="Выдача грузов">
-                 <svg width="18px" height="18px">
+               <button class="points-list__action" data-tippy-content="Выдача грузов">
+                 <svg width="18px" height="18px" class="icon">
                    <use xlink:href="assets/img/symbol/sprite.svg#accept"></use>
                  </svg>
                </button>
-               <button class="filter-list__action" data-tippy-content="Прием грузов">
-                 <svg width="18px" height="18px">
+               <button class="points-list__action" data-tippy-content="Прием грузов">
+                 <svg width="18px" height="18px" class="icon">
                    <use xlink:href="assets/img/symbol/sprite.svg#give"></use>
                  </svg>
                </button>
-               <button class="filter-list__action" data-tippy-content="Офис">
-                 <svg width="18px" height="18px">
+               <button class="points-list__action" data-tippy-content="Офис">
+                 <svg width="18px" height="18px" class="icon">
                    <use xlink:href="assets/img/symbol/sprite.svg#office"></use>
                  </svg>
                </button>
-               <div class="filter-list__text">Русская ул., 2а, ст. 3.</div>
-               <div class="filter-list__text filter-list__text--status"></div>
+               <div class="points-list__text">Русская ул., 2а, ст. 3.</div>
+               <div class="points-list__text points-list__text--status"></div>
              </li>
-             <li class="filter-list__item">
-               <a href="#" class="link link--blue link--lg">
+             <li class="points-list__item">
+               <a href="#" class="link link--blue link--lg" data-point-id="point-1">
                  <span class="link__text">Владивосток, Гоголя</span>
                </a>
-               <button class="filter-list__action" data-tippy-content="Выдача грузов">
-                 <svg width="18px" height="18px">
+               <button class="points-list__action" data-tippy-content="Выдача грузов">
+                 <svg width="18px" height="18px" class="icon">
                    <use xlink:href="assets/img/symbol/sprite.svg#accept"></use>
                  </svg>
                </button>
-               <button class="filter-list__action" data-tippy-content="Прием грузов">
-                 <svg width="18px" height="18px">
+               <button class="points-list__action" data-tippy-content="Прием грузов">
+                 <svg width="18px" height="18px" class="icon">
                    <use xlink:href="assets/img/symbol/sprite.svg#give"></use>
                  </svg>
                </button>
-               <button class="filter-list__action" data-tippy-content="Офис">
-                 <svg width="18px" height="18px">
+               <button class="points-list__action" data-tippy-content="Офис">
+                 <svg width="18px" height="18px" class="icon">
                    <use xlink:href="assets/img/symbol/sprite.svg#office"></use>
                  </svg>
                </button>
-               <div class="filter-list__text">Русская ул., 2а, ст. 3.</div>
-               <div class="filter-list__text filter-list__text--status"></div>
+               <div class="points-list__text">Русская ул., 2а, ст. 3.</div>
+               <div class="points-list__text points-list__text--status"></div>
              </li>
-             <li class="filter-list__item">
-               <a href="#" class="link link--blue link--lg">
+             <li class="points-list__item">
+               <a href="#" class="link link--blue link--lg" data-point-id="point-1">
                  <span class="link__text">Владивосток, Автовокзал</span>
                </a>
-               <button class="filter-list__action" data-tippy-content="Выдача грузов">
-                 <svg width="18px" height="18px">
+               <button class="points-list__action" data-tippy-content="Выдача грузов">
+                 <svg width="18px" height="18px" class="icon">
                    <use xlink:href="assets/img/symbol/sprite.svg#accept"></use>
                  </svg>
                </button>
-               <button class="filter-list__action" data-tippy-content="Прием грузов">
-                 <svg width="18px" height="18px">
+               <button class="points-list__action" data-tippy-content="Прием грузов">
+                 <svg width="18px" height="18px" class="icon">
                    <use xlink:href="assets/img/symbol/sprite.svg#give"></use>
                  </svg>
                </button>
-               <button class="filter-list__action" data-tippy-content="Офис">
-                 <svg width="18px" height="18px">
+               <button class="points-list__action" data-tippy-content="Офис">
+                 <svg width="18px" height="18px" class="icon">
                    <use xlink:href="assets/img/symbol/sprite.svg#office"></use>
                  </svg>
                </button>
-               <div class="filter-list__text">Русская ул., 2а, ст. 3.</div>
-               <div class="filter-list__text filter-list__text--status"></div>
+               <div class="points-list__text">Русская ул., 2а, ст. 3.</div>
+               <div class="points-list__text points-list__text--status"></div>
              </li>
            </ul>
          </div>
@@ -612,9 +644,47 @@
             <span class="link__text">inbox@busbox.guru</span>
           </a>
         </div>
+        <div class="page-contacts__toggle">
+          Скрыть список
+        </div>
         <div class="page-contacts__details">
           <article class="point-card">
-            <button type="button" class="point-card__btn">
+            <div class="preloader">
+              <svg version="1.1"
+                   width="60"
+                   height="60"
+                   class="svg-loader"
+                   xmlns="http://www.w3.org/2000/svg"
+                   xmlns:xlink="http://www.w3.org/1999/xlink"
+                   x="0px"
+                   y="0px"
+                   viewBox="0 0 80 80"
+                   xml:space="preserve">
+            
+            	<path
+                id="spinner"
+                fill="#FFDC00"
+                d="M40,72C22.4,72,8,57.6,8,40C8,22.4,
+            		22.4,8,40,8c17.6,0,32,14.4,32,32c0,1.1-0.9,2-2,2
+            		s-2-0.9-2-2c0-15.4-12.6-28-28-28S12,24.6,12,40s12.6,
+            		28,28,28c1.1,0,2,0.9,2,2S41.1,72,40,72z"
+              >
+            
+            		<animateTransform
+                  attributeType="xml"
+                  attributeName="transform"
+                  type="rotate"
+                  from="0 40 40"
+                  to="360 40 40"
+                  dur="0.6s"
+                  repeatCount="indefinite"
+                />
+            	</path>
+            </svg>
+            </div>
+            
+            <button type="button" class="point-card__close" data-close-btn></button>
+            <button type="button" class="point-card__btn" data-close-btn>
               <svg width="24px" height="20px">
                 <use xlink:href="assets/img/symbol/sprite.svg#back"></use>
               </svg>
@@ -663,7 +733,7 @@
                    srcset="assets/img/content/index/example-slide@2x.png 2x, assets/img/content/index/example-slide@3x.png 3x">
               <p class="point-card__text point-card__text--sm">За содержимое грузов и документов (далее — отправление) несет ответственность лицо, являющееся Отправителем.</p>
             </div>
-            <button type="button" class="point-card__btn">
+            <button type="button" class="point-card__btn" data-close-btn>
               <svg width="24px" height="20px">
                 <use xlink:href="assets/img/symbol/sprite.svg#back"></use>
               </svg>
