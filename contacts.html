@@ -23,7 +23,7 @@
   </head>
 <body>
   <div id="page" class="page__inner">
-    <header class="page-header">
+    <header id="pageHeader" class="page-header">
       <div class="page-header__inner">
         <a href="/" class="page-header__logo">
           <svg>
@@ -365,10 +365,10 @@
         <div class="tabs tabs--contacts">
           <ul class="tabs__nav">
             <li>
-              <a  href="#contactsMapPanel">На карте</a>
+              <a  href="#contactsMapPanel" role="tab">На карте</a>
             </li>
             <li>
-              <a  data-tabby-default href="#contactsListPanel">Списком</a>
+              <a  data-tabby-default href="#contactsListPanel" role="tab">Списком</a>
             </li>
           </ul>
         </div>
@@ -449,14 +449,14 @@
                <a href="#" class="link link--blue link--lg" data-point-id="point-1">
                  <span class="link__text">Владивосток, Автовокзал</span>
                </a>
-               <button class="points-list__action" data-tippy-content="Выдача грузов">
-                 <svg width="18px" height="18px" class="icon">
-                   <use xlink:href="assets/img/symbol/sprite.svg#accept"></use>
-                 </svg>
-               </button>
                <button class="points-list__action" data-tippy-content="Прием грузов">
                  <svg width="18px" height="18px" class="icon">
                    <use xlink:href="assets/img/symbol/sprite.svg#give"></use>
+                 </svg>
+               </button>
+               <button class="points-list__action" data-tippy-content="Выдача грузов">
+                 <svg width="18px" height="18px" class="icon">
+                   <use xlink:href="assets/img/symbol/sprite.svg#accept"></use>
                  </svg>
                </button>
                <button class="points-list__action" data-tippy-content="Офис">
@@ -471,14 +471,14 @@
                <a href="#" class="link link--blue link--lg" data-point-id="point-2">
                  <span class="link__text">Владивосток, Гоголя</span>
                </a>
-               <button class="points-list__action" data-tippy-content="Выдача грузов">
-                 <svg width="18px" height="18px" class="icon">
-                   <use xlink:href="assets/img/symbol/sprite.svg#accept"></use>
-                 </svg>
-               </button>
                <button class="points-list__action" data-tippy-content="Прием грузов">
                  <svg width="18px" height="18px" class="icon">
                    <use xlink:href="assets/img/symbol/sprite.svg#give"></use>
+                 </svg>
+               </button>
+               <button class="points-list__action" data-tippy-content="Выдача грузов">
+                 <svg width="18px" height="18px" class="icon">
+                   <use xlink:href="assets/img/symbol/sprite.svg#accept"></use>
                  </svg>
                </button>
                <button class="points-list__action" data-tippy-content="Офис">
@@ -493,14 +493,14 @@
                <a href="#" class="link link--blue link--lg" data-point-id="point-3">
                  <span class="link__text">Артем</span>
                </a>
-               <button class="points-list__action" data-tippy-content="Выдача грузов">
-                 <svg width="18px" height="18px" class="icon">
-                   <use xlink:href="assets/img/symbol/sprite.svg#accept"></use>
-                 </svg>
-               </button>
                <button class="points-list__action" data-tippy-content="Прием грузов">
                  <svg width="18px" height="18px" class="icon">
                    <use xlink:href="assets/img/symbol/sprite.svg#give"></use>
+                 </svg>
+               </button>
+               <button class="points-list__action" data-tippy-content="Выдача грузов">
+                 <svg width="18px" height="18px" class="icon">
+                   <use xlink:href="assets/img/symbol/sprite.svg#accept"></use>
                  </svg>
                </button>
                <button class="points-list__action" data-tippy-content="Офис">
@@ -515,14 +515,14 @@
                <a href="#" class="link link--blue link--lg" data-point-id="point-4">
                  <span class="link__text">Уссурийск</span>
                </a>
-               <button class="points-list__action" data-tippy-content="Выдача грузов">
-                 <svg width="18px" height="18px" class="icon">
-                   <use xlink:href="assets/img/symbol/sprite.svg#accept"></use>
-                 </svg>
-               </button>
                <button class="points-list__action" data-tippy-content="Прием грузов">
                  <svg width="18px" height="18px" class="icon">
                    <use xlink:href="assets/img/symbol/sprite.svg#give"></use>
+                 </svg>
+               </button>
+               <button class="points-list__action" data-tippy-content="Выдача грузов">
+                 <svg width="18px" height="18px" class="icon">
+                   <use xlink:href="assets/img/symbol/sprite.svg#accept"></use>
                  </svg>
                </button>
                <button class="points-list__action" data-tippy-content="Офис">
@@ -537,14 +537,14 @@
                <a href="#" class="link link--blue link--lg" data-point-id="point-5">
                  <span class="link__text">Уссурийск</span>
                </a>
-               <button class="points-list__action" data-tippy-content="Выдача грузов">
-                 <svg width="18px" height="18px" class="icon">
-                   <use xlink:href="assets/img/symbol/sprite.svg#accept"></use>
-                 </svg>
-               </button>
                <button class="points-list__action" data-tippy-content="Прием грузов">
                  <svg width="18px" height="18px" class="icon">
                    <use xlink:href="assets/img/symbol/sprite.svg#give"></use>
+                 </svg>
+               </button>
+               <button class="points-list__action" data-tippy-content="Выдача грузов">
+                 <svg width="18px" height="18px" class="icon">
+                   <use xlink:href="assets/img/symbol/sprite.svg#accept"></use>
                  </svg>
                </button>
                <button class="points-list__action" data-tippy-content="Офис">
@@ -559,14 +559,14 @@
                <a href="#" class="link link--blue link--lg" data-point-id="point-6">
                  <span class="link__text">Находка</span>
                </a>
-               <button class="points-list__action" data-tippy-content="Выдача грузов">
-                 <svg width="18px" height="18px" class="icon">
-                   <use xlink:href="assets/img/symbol/sprite.svg#accept"></use>
-                 </svg>
-               </button>
                <button class="points-list__action" data-tippy-content="Прием грузов">
                  <svg width="18px" height="18px" class="icon">
                    <use xlink:href="assets/img/symbol/sprite.svg#give"></use>
+                 </svg>
+               </button>
+               <button class="points-list__action" data-tippy-content="Выдача грузов">
+                 <svg width="18px" height="18px" class="icon">
+                   <use xlink:href="assets/img/symbol/sprite.svg#accept"></use>
                  </svg>
                </button>
                <button class="points-list__action" data-tippy-content="Офис">
@@ -581,14 +581,14 @@
                <a href="#" class="link link--blue link--lg" data-point-id="point-1">
                  <span class="link__text">Владивосток, Гоголя</span>
                </a>
-               <button class="points-list__action" data-tippy-content="Выдача грузов">
-                 <svg width="18px" height="18px" class="icon">
-                   <use xlink:href="assets/img/symbol/sprite.svg#accept"></use>
-                 </svg>
-               </button>
                <button class="points-list__action" data-tippy-content="Прием грузов">
                  <svg width="18px" height="18px" class="icon">
                    <use xlink:href="assets/img/symbol/sprite.svg#give"></use>
+                 </svg>
+               </button>
+               <button class="points-list__action" data-tippy-content="Выдача грузов">
+                 <svg width="18px" height="18px" class="icon">
+                   <use xlink:href="assets/img/symbol/sprite.svg#accept"></use>
                  </svg>
                </button>
                <button class="points-list__action" data-tippy-content="Офис">
@@ -603,14 +603,14 @@
                <a href="#" class="link link--blue link--lg" data-point-id="point-1">
                  <span class="link__text">Владивосток, Автовокзал</span>
                </a>
-               <button class="points-list__action" data-tippy-content="Выдача грузов">
-                 <svg width="18px" height="18px" class="icon">
-                   <use xlink:href="assets/img/symbol/sprite.svg#accept"></use>
-                 </svg>
-               </button>
                <button class="points-list__action" data-tippy-content="Прием грузов">
                  <svg width="18px" height="18px" class="icon">
                    <use xlink:href="assets/img/symbol/sprite.svg#give"></use>
+                 </svg>
+               </button>
+               <button class="points-list__action" data-tippy-content="Выдача грузов">
+                 <svg width="18px" height="18px" class="icon">
+                   <use xlink:href="assets/img/symbol/sprite.svg#accept"></use>
                  </svg>
                </button>
                <button class="points-list__action" data-tippy-content="Офис">
@@ -631,18 +631,22 @@
         </div>
         <div class="page-contacts__feedback">
           <p>Единая справочная для всего Приморского края:</p>
-          <a href="tel: +7 (423) 205-86-27" class="link link--lg link--no-underline">
-            <svg class="icon icon--black" width="19px" height="16px">
-              <use xlink:href="assets/img/symbol/sprite.svg#headphone"></use>
-            </svg>
-            <span class="link__text">+7 (423) 205-86-27</span>
-          </a>
-          <a href="mailto: inbox@busbox.guru" class="link link--lg">
-            <svg class="icon icon--black" width="19px" height="16px">
-              <use xlink:href="assets/img/symbol/sprite.svg#email"></use>
-            </svg>
-            <span class="link__text">inbox@busbox.guru</span>
-          </a>
+          <div>
+            <a href="tel: +7 (423) 205-86-27" class="link link--lg link--no-underline">
+              <svg class="icon icon--black" width="19px" height="16px">
+                <use xlink:href="assets/img/symbol/sprite.svg#headphone"></use>
+              </svg>
+              <span class="link__text">+7 (423) 205-86-27</span>
+            </a>
+          </div>
+          <div>
+            <a href="mailto: inbox@busbox.guru" class="link link--lg link--dashed">
+              <svg class="icon icon--black" width="19px" height="16px">
+                <use xlink:href="assets/img/symbol/sprite.svg#email"></use>
+              </svg>
+              <span class="link__text">inbox@busbox.guru</span>
+            </a>
+          </div>
         </div>
         <div class="page-contacts__toggle">
           Скрыть список
@@ -697,14 +701,14 @@
                 <a href="#" data-zoom-id="point-1" class="link link--lg link--gray">
                   <span class="link__text">Посмотреть на карте</span>
                 </a>
-                <svg class="icon" width="16px" height="20px">
+                <svg class="icon icon--gray" width="16px" height="20px">
                   <use xlink:href="assets/img/symbol/sprite.svg#location-point"></use>
                 </svg>
               </div>
               <div class="point-card__contact">
                 <p class="point-card__text point-card__text--gray">График работы:</p>
                 <p class="point-card__text">с 8:00 до 20:00, без выходных</p>
-                <svg class="icon" width="20px" height="20px">
+                <svg class="icon icon--gray" width="20px" height="20px">
                   <use xlink:href="assets/img/symbol/sprite.svg#alarm-clock"></use>
                 </svg>
               </div>
@@ -713,13 +717,13 @@
                 <a href="tel: +7(423)2937879" class="link link--lg link--no-underline">
                   <span class="link__text"><b>+7 (423) 293 78 79</b>, доб. 0</span>
                 </a>
-                <svg class="icon"  width="20px" height="20px">
+                <svg class="icon icon--gray"  width="20px" height="20px">
                   <use xlink:href="assets/img/symbol/sprite.svg#union"></use>
                 </svg>
               </div>
               <div class="point-card__contact">
                 <p class="point-card__text point-card__text--gray">Почта отделения:</p>
-                <a herf="malto: inbox@busbox.guru" class="link link--lg link--blue">
+                <a herf="malto: inbox@busbox.guru" class="link link--lg link--blue link--no-underline">
                   <b class="link__text">inbox@busbox.guru</b>
                 </a>
                 <svg class="icon icon--blue" width="19px" height="16px">

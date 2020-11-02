@@ -21449,6 +21449,7 @@ function () {
   function ContactsPage() {
     _classCallCheck(this, ContactsPage);
 
+    this.$pageHeader = document.getElementById('pageHeader');
     this.$pageContainer = document.getElementById('contactsPage');
     this.$tabsContainer = this.$pageContainer.querySelector('.tabs');
     this.$map = this.$pageContainer.querySelector('#contactsMap');
@@ -21461,6 +21462,7 @@ function () {
     this.listIsOpen = true;
     this.activeMapClass = 'page-contacts--map-panel';
     this.activePoint = null;
+    this.pageContainerTop = null;
     this.initPage();
   }
 
@@ -21482,23 +21484,25 @@ function () {
       this.$pointCard.addEventListener('click', this.zoomToPoint.bind(this));
       this.$map.addEventListener('click', this.showPointCard.bind(this));
       this.$select.addEventListener('click', this.loadPointsList.bind(this));
-      this.$pageContainer.addEventListener('click', this.setActivePoint.bind(this));
+      this.$pageContainer.addEventListener('click', this.setActivePoint.bind(this)); // global
+
+      window.addEventListener('scroll', this.scrollPage.bind(this));
       this.loadPointsList();
     }
   }, {
     key: "initTabs",
     value: function initTabs() {
       if (!this.$tabsContainer) return;
-      var tabs = new tabbyjs__WEBPACK_IMPORTED_MODULE_2___default.a('.page-contacts .tabs > ul');
+      this.$tabs = new tabbyjs__WEBPACK_IMPORTED_MODULE_2___default.a('.page-contacts .tabs > ul');
 
       if (this.breakpoint.matches) {
-        tabs.destroy();
+        this.$tabs.destroy();
+        this.$tabs = null;
       } else {
-        tabs = new tabbyjs__WEBPACK_IMPORTED_MODULE_2___default.a('.page-contacts .tabs > ul');
+        this.$tabs = new tabbyjs__WEBPACK_IMPORTED_MODULE_2___default.a('.page-contacts .tabs > ul');
+        this.toggleTabs();
+        this.$tabs.toggle('#contactsMapPanel');
       }
-
-      this.toggleTabs();
-      tabs.toggle('#contactsMapPanel');
     }
   }, {
     key: "toggleTabs",
@@ -21510,7 +21514,13 @@ function () {
           _this.$pageContainer.classList.add(_this.activeMapClass);
         } else {
           _this.$pageContainer.classList.remove(_this.activeMapClass);
-        }
+        } // window.scrollTo({
+        //   top: 0
+        // });
+        // this.$pageContainer.scrollIntoView({
+        //   behavior: 'smooth'
+        // })
+
       });
     }
   }, {
@@ -21547,6 +21557,7 @@ function () {
       this.$pageContainer.classList.add('page-contacts--details');
       this.setActivePoint(point);
       this.loadPointCard();
+      this.scrollIntoView();
     }
   }, {
     key: "hidePointCard",
@@ -21596,13 +21607,59 @@ function () {
       var currentCoords = _data_contactCoords_json__WEBPACK_IMPORTED_MODULE_0__['vladivostok'].coords.filter(function (item) {
         return item.id === zoom.dataset.zoomId;
       })[0];
+      if (!currentCoords) return;
+      this.mapApi.setCenter(new google.maps.LatLng(currentCoords.lat, currentCoords.lng));
+      this.mapApi.setZoom(16);
 
-      if (currentCoords) {
-        this.mapApi.setCenter(new google.maps.LatLng(currentCoords.lat, currentCoords.lng));
-        this.mapApi.setZoom(16);
+      if (this.$tabs) {
+        this.$tabs.toggle('#contactsMapPanel');
       }
 
       this.$pageContainer.classList.remove('page-contacts--details');
+    }
+  }, {
+    key: "scrollIntoView",
+    value: function scrollIntoView() {
+      var _this4 = this;
+
+      // if (!this.breakpoint.matches) return;
+      this.$pageHeader.classList.add('page-header--sticky');
+      this.setContentSpace();
+      this.$pageContainer.scrollIntoView({
+        behavior: this.breakpoint.matches ? 'smooth' : 'auto'
+      });
+      setTimeout(function () {
+        _this4.pageContainerTop = _this4.$pageContainer.getBoundingClientRect().top;
+      }, 0);
+    }
+  }, {
+    key: "scrollPage",
+    value: function scrollPage(e) {
+      var _this5 = this;
+
+      // if (!this.breakpoint.matches) return;
+      window.clearTimeout(this.isScrolling); // Set a timeout to run after scrolling ends
+
+      this.isScrolling = setTimeout(function () {
+        if (_this5.$pageContainer.getBoundingClientRect().top > '30') {
+          _this5.$pageContainer.style = null;
+
+          _this5.$pageContainer.classList.remove('page-contacts--into-view');
+
+          window.scrollTo({
+            top: 0
+          });
+        } else if (window.pageYOffset > 0 && window.pageYOffset < 90) {
+          _this5.scrollIntoView();
+        }
+      }, 66);
+    }
+  }, {
+    key: "setContentSpace",
+    value: function setContentSpace() {
+      this.$pageContainer.style.marginTop = "".concat(parseInt(this.$pageHeader.getBoundingClientRect().height), "px"); // this.$pageContainer.style.paddingTop = '30px';
+
+      this.$pageContainer.classList.add('page-contacts--into-view');
     }
   }]);
 
@@ -21794,7 +21851,7 @@ var _data_pickupCoords_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__
 
 
 function initMap(mapContainer, coords) {
-  var gestureHandling = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'none';
+  var gestureHandling = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
   var scrollWheel = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
   if (!mapContainer) return;
   var map = new google.maps.Map(mapContainer, {
@@ -21838,7 +21895,6 @@ var pageHeader = document.querySelector('.page-header');
 
 function setStickyMenu() {
   if (window.pageYOffset > 0) {
-    console.log('page', 'da');
     pageHeader.classList.add('page-header--sticky');
   } else {
     pageHeader.classList.remove('page-header--sticky');
