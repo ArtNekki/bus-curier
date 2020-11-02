@@ -21446,11 +21446,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 var ContactsPage =
 /*#__PURE__*/
 function () {
-  function ContactsPage() {
+  function ContactsPage(container) {
     _classCallCheck(this, ContactsPage);
 
     this.$pageHeader = document.getElementById('pageHeader');
-    this.$pageContainer = document.getElementById('contactsPage');
+    this.$pageContainer = container;
     this.$tabsContainer = this.$pageContainer.querySelector('.tabs');
     this.$map = this.$pageContainer.querySelector('#contactsMap');
     this.$toggleList = this.$pageContainer.querySelector('.page-contacts__toggle');
@@ -21557,7 +21557,7 @@ function () {
       this.$pageContainer.classList.add('page-contacts--details');
       this.setActivePoint(point);
       this.loadPointCard();
-      this.scrollIntoView();
+      this.scrollToTop();
     }
   }, {
     key: "hidePointCard",
@@ -21618,41 +21618,44 @@ function () {
       this.$pageContainer.classList.remove('page-contacts--details');
     }
   }, {
-    key: "scrollIntoView",
-    value: function scrollIntoView() {
-      var _this4 = this;
-
-      // if (!this.breakpoint.matches) return;
-      this.$pageHeader.classList.add('page-header--sticky');
-      this.setContentSpace();
-      this.$pageContainer.scrollIntoView({
+    key: "scrollToTop",
+    value: function scrollToTop() {
+      window.scrollTo({
+        top: 5,
         behavior: this.breakpoint.matches ? 'smooth' : 'auto'
-      });
-      setTimeout(function () {
-        _this4.pageContainerTop = _this4.$pageContainer.getBoundingClientRect().top;
-      }, 0);
+      }); // if (!this.breakpoint.matches) return;
+      // this.$pageHeader.classList.add('page-header--sticky');
+      // this.setContentSpace();
+      //
+      // this.$pageContainer.scrollIntoView({
+      //   behavior: this.breakpoint.matches? 'smooth' : 'auto'
+      // });
+      //
+      // setTimeout(() => {
+      //   this.pageContainerTop = this.$pageContainer.getBoundingClientRect().top;
+      // }, 0)
     }
   }, {
     key: "scrollPage",
-    value: function scrollPage(e) {
-      var _this5 = this;
-
-      // if (!this.breakpoint.matches) return;
-      window.clearTimeout(this.isScrolling); // Set a timeout to run after scrolling ends
-
-      this.isScrolling = setTimeout(function () {
-        if (_this5.$pageContainer.getBoundingClientRect().top > '30') {
-          _this5.$pageContainer.style = null;
-
-          _this5.$pageContainer.classList.remove('page-contacts--into-view');
-
-          window.scrollTo({
-            top: 0
-          });
-        } else if (window.pageYOffset > 0 && window.pageYOffset < 90) {
-          _this5.scrollIntoView();
-        }
-      }, 66);
+    value: function scrollPage(e) {// if (!this.breakpoint.matches) return;
+      // window.clearTimeout( this.isScrolling );
+      //
+      // // Set a timeout to run after scrolling ends
+      // this.isScrolling = setTimeout(() => {
+      //
+      //   if (this.$pageContainer.getBoundingClientRect().top  > '30') {
+      //     this.$pageContainer.style = null;
+      //     this.$pageContainer.classList.remove('page-contacts--into-view');
+      //
+      //       window.scrollTo({
+      //         top: 0
+      //       });
+      //
+      //     } else if (window.pageYOffset > 0 && window.pageYOffset < 90) {
+      //     this.scrollIntoView();
+      //   }
+      //
+      // }, 66);
     }
   }, {
     key: "setContentSpace",
@@ -21682,7 +21685,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Contacts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Contacts */ "./src/assets/js/modules/Contacts/Contacts.js");
 
 document.addEventListener('DOMContentLoaded', function () {
-  new _Contacts__WEBPACK_IMPORTED_MODULE_0__["default"]();
+  var pageContainer = document.getElementById('contactsPage');
+
+  if (pageContainer) {
+    new _Contacts__WEBPACK_IMPORTED_MODULE_0__["default"](pageContainer);
+  }
 });
 
 /***/ }),
@@ -21891,16 +21898,6 @@ function initMap(mapContainer, coords) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var pageHeader = document.querySelector('.page-header');
-
-function setStickyMenu() {
-  if (window.pageYOffset > 0) {
-    pageHeader.classList.add('page-header--sticky');
-  } else {
-    pageHeader.classList.remove('page-header--sticky');
-  }
-}
-
 document.addEventListener('click', function (e) {
   if (e.target && e.target.id === 'mobileNavOpen') {
     this.documentElement.classList.add('page--mobile-open');
@@ -21908,8 +21905,23 @@ document.addEventListener('click', function (e) {
     this.documentElement.classList.remove('page--mobile-open');
   }
 });
-setStickyMenu();
-document.addEventListener('scroll', setStickyMenu);
+document.addEventListener('DOMContentLoaded', function () {
+  var header = document.querySelector('.page-header');
+
+  function setStickyMenu() {
+    if (window.pageYOffset > 0) {
+      document.documentElement.classList.add('page--header-sticky');
+      document.body.style.paddingTop = "".concat(parseInt(header.getBoundingClientRect().height), "px");
+    } else {
+      document.documentElement.classList.remove('page--header-sticky');
+      document.body.style = null;
+    }
+  }
+
+  setStickyMenu();
+  document.addEventListener('scroll', setStickyMenu);
+  window.addEventListener('resize', setStickyMenu);
+});
 
 /***/ }),
 
