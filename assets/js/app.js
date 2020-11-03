@@ -21480,9 +21480,10 @@ function () {
       this.$toggleList.addEventListener('click', this.toggleList.bind(this));
       this.$pointsSwitcher.addEventListener('click', this.switchFilter.bind(this));
       this.$pointsList.addEventListener('click', this.showPointCard.bind(this));
-      this.$pointCard.addEventListener('click', this.hidePointCard.bind(this));
+      this.$pageContainer.addEventListener('click', this.hidePointCard.bind(this));
       this.$pointCard.addEventListener('click', this.zoomToPoint.bind(this));
       this.$map.addEventListener('click', this.showPointCard.bind(this));
+      this.$pageContainer.addEventListener('click', this.switchToFullMode.bind(this));
       this.$select.addEventListener('click', this.loadPointsList.bind(this));
       this.$pageContainer.addEventListener('click', this.setActivePoint.bind(this)); // global
 
@@ -21558,6 +21559,7 @@ function () {
       this.setActivePoint(point);
       this.loadPointCard();
       this.scrollToTop();
+      this.closeMap();
     }
   }, {
     key: "hidePointCard",
@@ -21565,6 +21567,7 @@ function () {
       var btn = e.target.closest('[data-close-btn]');
       if (!btn) return;
       this.$pageContainer.classList.remove('page-contacts--details');
+      this.closeMap();
     }
   }, {
     key: "loadPointsList",
@@ -21615,7 +21618,9 @@ function () {
         this.$tabs.toggle('#contactsMapPanel');
       }
 
+      document.documentElement.classList.add('page--full-map');
       this.$pageContainer.classList.remove('page-contacts--details');
+      this.scrollToTop();
     }
   }, {
     key: "scrollToTop",
@@ -21663,6 +21668,21 @@ function () {
       this.$pageContainer.style.marginTop = "".concat(parseInt(this.$pageHeader.getBoundingClientRect().height), "px"); // this.$pageContainer.style.paddingTop = '30px';
 
       this.$pageContainer.classList.add('page-contacts--into-view');
+    }
+  }, {
+    key: "switchToFullMode",
+    value: function switchToFullMode(e) {
+      var btn = e.target.closest('[data-full-mode]');
+      console.log('btn', btn);
+      if (!btn) return;
+      document.documentElement.classList.add('page--full-map');
+      this.mapApi.setZoom(14);
+    }
+  }, {
+    key: "closeMap",
+    value: function closeMap() {
+      document.documentElement.classList.remove('page--full-map');
+      this.mapApi.setZoom(13);
     }
   }]);
 
